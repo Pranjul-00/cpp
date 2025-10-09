@@ -1,0 +1,73 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int size, n;
+    
+    cout << "Enter the number of elements in the array: ";
+    cin >> size;
+    
+    int numbers[100];
+    
+    cout << "Enter " << size << " numbers: ";
+    for(int i = 0; i < size; i++) {
+        cin >> numbers[i];
+    }
+    
+    cout << "Enter which largest number you want to find (n): ";
+    cin >> n;
+    
+    int uniqueArray[100];
+    int uniqueSize = 0;
+    
+    for(int i = 0; i < size; i++) {
+        bool isDuplicate = false;
+        for(int j = 0; j < uniqueSize; j++) {
+            if(numbers[i] == uniqueArray[j]) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if(!isDuplicate) {
+            uniqueArray[uniqueSize] = numbers[i];
+            uniqueSize++;
+        }
+    }
+    
+    cout << "Array after removing duplicates: ";
+    for(int i = 0; i < uniqueSize; i++) {
+        cout << uniqueArray[i] << " ";
+    }
+    cout << endl;
+    
+    if(n > uniqueSize) {
+        cout << "\nError: There are only " << uniqueSize 
+             << " unique numbers, but you asked for the " << n << "th largest." << endl;
+        return 0;
+    }
+    
+    int nthLargest;
+    
+    for(int rank = 1; rank <= n; rank++) {
+        int largest = uniqueArray[0];
+        int largestIndex = 0;
+        
+        for(int i = 1; i < uniqueSize; i++) {
+            if(uniqueArray[i] > largest) {
+                largest = uniqueArray[i];
+                largestIndex = i;
+            }
+        }
+        
+        if(rank == n) {
+            nthLargest = largest;
+        }
+        
+        uniqueArray[largestIndex] = -999999;
+    }
+    
+    cout << "\nThe " << n << "th largest number is: " << nthLargest << endl;
+    
+    return 0;
+}
