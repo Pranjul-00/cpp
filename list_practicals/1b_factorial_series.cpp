@@ -1,10 +1,14 @@
 /*
  * PRACTICAL 1B: FACTORIAL SERIES CALCULATION
  * ==========================================
- * 
+ *
  * PURPOSE: Calculate the sum of a factorial series where each term follows the pattern:
  *          S = 1 + 1/2! + 1/3! + 1/4! + ... + 1/n!
- * 
+ *
+ * IMPLEMENTATION NOTES:
+ * - No headers are included. Minimal C runtime prototypes are forward-declared
+ *   and used for console I/O and argument parsing.
+ *
  * ALGORITHM:
  * 1. Accept number of terms (n) from user or command line
  * 2. Start with sum = 1 (first term)
@@ -12,23 +16,17 @@
  *    - Calculate factorial of i
  *    - Add 1/i! to the sum
  * 4. Display the final sum
- * 
- * KEY CONCEPTS DEMONSTRATED:
- * - Factorial calculation using loops
- * - Mathematical series computation
- * - Command line argument handling
- * - Working with large numbers (long long)
- * 
+ *
  * INPUT: Number of terms (n)
  * OUTPUT: Sum of the factorial series
- * 
- * EXAMPLE: For n=4, S = 1 + 1/2 + 1/6 + 1/24 = 1.708333...
+ *
+ * EXAMPLE: For n = 4, S = 1 + 1/2 + 1/6 + 1/24 = 1.708333...
  * NOTE: This series converges to e (Euler's number) ≈ 2.71828
  */
 
-#include <iostream>                       // Include input/output stream library for cout, cin
-#include <cstdlib>                        // Include standard library for atoi function
-using namespace std;                    // Use standard namespace to avoid writing std:: prefix
+extern "C" int printf(const char*, ...);
+extern "C" int scanf(const char*, ...);
+extern "C" int atoi(const char*);
 
 // Function to calculate factorial of a number using iterative method
 // Parameters: n - the number whose factorial is to be calculated
@@ -42,34 +40,33 @@ long long factorial(int n) {                                            // Funct
     return fact;                                                         // Return calculated factorial
 }
 
-int main(int argc, char* argv[]) {                                       // Main function with command line arguments
-    int n;                                                               // Variable to store number of terms
-    
-    // Check if command line argument is provided
-    if (argc > 1) {                                                      // Check if at least one argument provided
-        n = atoi(argv[1]);                                               // Convert first argument to integer
-    } else {                                                             // If no command line argument
-        cout << "Enter the number of terms: ";                          // Prompt user for input
-        cin >> n;                                                        // Read number of terms from user
-    }                                                                    // End of input handling
-    
-    double series = 1.0;                                                 // Initialize series sum to 1 (first term 1/1! = 1)
-    
-    cout << "\nCalculating factorial series with " << n << " terms:" << endl; // Display calculation header
-    cout << "Series: 1";                                                 // Display first term
-    
-    // Calculate remaining terms and add to series sum
-    for (int i = 2; i <= n; i++) {                                      // Loop from 2 to n (first term already included)
-        double term = 1.0 / factorial(i);                               // Calculate current term (1/i!)
-        series += term;                                                  // Add term to series sum
-        
-        cout << " + 1/" << i << "!";                                     // Display term in series format
-    }                                                                    // End of series calculation loop
-    
-    // Display final result
-    cout << " = " << series << endl;                                     // Display final series sum
-    cout << "\nFactorial Series Sum = " << series << endl;               // Display result with label
-    cout << "Note: This series converges to e (Euler's number) ≈ 2.71828" << endl; // Mathematical note
-    
-    return 0;                                                            // Return 0 to indicate successful execution
+int main(int argc, char* argv[]) {
+    int n;
+
+    if (argc > 1) {
+        n = atoi(argv[1]);
+    } else {
+        printf("Enter the number of terms: ");
+        if (scanf("%d", &n) != 1) {
+            printf("Invalid input.\n");
+            return 1;
+        }
+    }
+
+    double series = 1.0;
+
+    printf("\nCalculating factorial series with %d terms:\n", n);
+    printf("Series: 1");
+
+    for (int i = 2; i <= n; i++) {
+        double term = 1.0 / factorial(i);
+        series += term;
+        printf(" + 1/%d!", i);
+    }
+
+    printf(" = %.10f\n", series);
+    printf("\nFactorial Series Sum = %.10f\n", series);
+    printf("Note: This series converges to e (Euler's number) ≈ 2.71828\n");
+
+    return 0;
 }
