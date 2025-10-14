@@ -28,7 +28,7 @@ void showAddresses(char* str) {                                          // Func
     for (int i = 0; str[i] != '\0'; i++) {                               // Loop through each character until null terminator
         printf("%d\t'%c'\t%p\n", i, str[i], (void*)&str[i]);
     }                                                                     // End of for loop
-    cout << "Note: Addresses are consecutive, showing contiguous memory storage." << endl; // Educational note about memory layout
+    printf("Note: Addresses are consecutive, showing contiguous memory storage.\n");
 }
 
 // Function to concatenate two strings manually (without strcat)
