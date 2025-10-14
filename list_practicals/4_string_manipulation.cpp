@@ -1,45 +1,32 @@
 /*
  * PRACTICAL 4: COMPREHENSIVE STRING MANIPULATION MENU
  * ==================================================
- * 
+ *
  * PURPOSE: Demonstrate various string operations through a menu-driven program
  *          including address display, concatenation, comparison, length calculation,
  *          case conversion, reversal, and string insertion.
- * 
- * FEATURES:
- * 1. Show memory addresses of each character in a string
- * 2. Concatenate two strings without using library functions
- * 3. Compare two strings lexicographically
- * 4. Calculate string length using pointer arithmetic
- * 5. Convert lowercase to uppercase
- * 6. Reverse a string in-place
- * 7. Insert one string into another at specified position
- * 
- * KEY CONCEPTS DEMONSTRATED:
- * - Menu-driven programming with switch-case
- * - String manipulation without library functions
- * - Pointer arithmetic and memory addresses
- * - Character array operations
- * - Manual implementation of string functions
- * - Input buffer management with cin.ignore()
- * 
+ *
+ * IMPLEMENTATION NOTES:
+ * - No headers are included. Minimal C runtime prototypes are forward-declared
+ *   and used for console I/O.
+ *
  * INPUT: User choice and corresponding string inputs
  * OUTPUT: Results of various string operations
  */
 
-#include <iostream>                       // Include input/output stream library for cout, cin
-using namespace std;                    // Use standard namespace to avoid writing std:: prefix
+extern "C" int printf(const char*, ...);
+extern "C" int scanf(const char*, ...);
 
 // Function to display memory address of each character in a string
 // Purpose: Demonstrates how strings are stored in memory as character arrays
 // Parameter: str - pointer to the string whose addresses are to be displayed
 void showAddresses(char* str) {                                          // Function definition with char pointer parameter
-    cout << "\n=== CHARACTER MEMORY ADDRESSES ===" << endl;             // Display function header
-    cout << "Index\tChar\tAddress" << endl;                             // Display column headers
-    cout << "-----\t----\t-------" << endl;                             // Display separator line
+    printf("\n=== CHARACTER MEMORY ADDRESSES ===\n");
+    printf("Index\tChar\tAddress\n");
+    printf("-----\t----\t-------\n");
     
     for (int i = 0; str[i] != '\0'; i++) {                               // Loop through each character until null terminator
-        cout << i << "\t'" << str[i] << "'\t" << (void*)&str[i] << endl;  // Display index, character, and memory address
+        printf("%d\t'%c'\t%p\n", i, str[i], (void*)&str[i]);
     }                                                                     // End of for loop
     cout << "Note: Addresses are consecutive, showing contiguous memory storage." << endl; // Educational note about memory layout
 }
@@ -159,94 +146,95 @@ int main() {                                                             // Main
     char str1[100], str2[100], result[200];                              // Character arrays for string storage
     
     do {                                                                  // Start of menu loop
-        // Display menu options
-        cout << "\n=== STRING MANIPULATION MENU ===" << endl;             // Display menu header
-        cout << "1. Show Memory Addresses of Characters" << endl;          // Display option 1
-        cout << "2. Concatenate Two Strings" << endl;                     // Display option 2
-        cout << "3. Compare Two Strings" << endl;                         // Display option 3
-        cout << "4. Calculate String Length" << endl;                     // Display option 4
-        cout << "5. Convert to Uppercase" << endl;                        // Display option 5
-        cout << "6. Reverse String" << endl;                              // Display option 6
-        cout << "0. Exit" << endl;                                        // Display exit option
-        cout << "\nEnter your choice: ";                                  // Prompt for user input
-        cin >> choice;                                                    // Read user choice
-        cin.ignore();                                                     // Clear input buffer after reading integer
+        printf("\n=== STRING MANIPULATION MENU ===\n");
+        printf("1. Show Memory Addresses of Characters\n");
+        printf("2. Concatenate Two Strings\n");
+        printf("3. Compare Two Strings\n");
+        printf("4. Calculate String Length\n");
+        printf("5. Convert to Uppercase\n");
+        printf("6. Reverse String\n");
+        printf("0. Exit\n");
+        printf("\nEnter your choice: ");
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input.\n");
+            return 1;
+        }
         
         switch (choice) {                                                 // Start switch statement for menu handling
             case 1: {                                                     // Handle option 1 - show addresses
-                cout << "\nEnter a string: ";                             // Prompt for string input
-                cin.getline(str1, 100);                                  // Read string with spaces
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 showAddresses(str1);                                      // Call function to display addresses
                 break;                                                    // Exit case 1
             }                                                             // End of case 1
             
             case 2: {                                                     // Handle option 2 - concatenation
-                cout << "\nEnter first string: ";                         // Prompt for first string
-                cin.getline(str1, 100);                                  // Read first string
-                cout << "Enter second string: ";                          // Prompt for second string
-                cin.getline(str2, 100);                                  // Read second string
+                printf("\nEnter first string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
+                printf("Enter second string: ");
+                if (scanf(" %99[^\n]", str2) != 1) { return 1; }
                 
                 concatenateStrings(str1, str2, result);                  // Call concatenation function
-                cout << "\nConcatenated string: \"" << result << "\"" << endl; // Display result
-                cout << "First string: \"" << str1 << "\"" << endl;        // Display original first string
-                cout << "Second string: \"" << str2 << "\"" << endl;       // Display original second string
+                printf("\nConcatenated string: \"%s\"\n", result);
+                printf("First string: \"%s\"\n", str1);
+                printf("Second string: \"%s\"\n", str2);
                 break;                                                    // Exit case 2
             }                                                             // End of case 2
             
             case 3: {                                                     // Handle option 3 - comparison
-                cout << "\nEnter first string: ";                         // Prompt for first string
-                cin.getline(str1, 100);                                  // Read first string
-                cout << "Enter second string: ";                          // Prompt for second string
-                cin.getline(str2, 100);                                  // Read second string
+                printf("\nEnter first string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
+                printf("Enter second string: ");
+                if (scanf(" %99[^\n]", str2) != 1) { return 1; }
                 
                 int comparison = compareStrings(str1, str2);             // Call comparison function
-                cout << "\nComparison result: ";                          // Display result header
-                if (comparison == 0) {                                    // Check if strings are equal
-                    cout << "Strings are equal" << endl;                  // Display equal message
-                } else if (comparison < 0) {                              // Check if first string is smaller
-                    cout << "First string is lexicographically smaller" << endl; // Display smaller message
-                } else {                                                  // Else first string is larger
-                    cout << "First string is lexicographically larger" << endl;  // Display larger message
-                }                                                         // End of comparison result display
+                printf("\nComparison result: ");
+                if (comparison == 0) {
+                    printf("Strings are equal\n");
+                } else if (comparison < 0) {
+                    printf("First string is lexicographically smaller\n");
+                } else {
+                    printf("First string is lexicographically larger\n");
+                }
                 break;                                                    // Exit case 3
             }                                                             // End of case 3
             
             case 4: {                                                     // Handle option 4 - length calculation
-                cout << "\nEnter a string: ";                             // Prompt for string input
-                cin.getline(str1, 100);                                  // Read string
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 
                 int length = calculateLength(str1);                      // Call length calculation function
-                cout << "\nString: \"" << str1 << "\"" << endl;            // Display original string
-                cout << "Length: " << length << " characters" << endl;    // Display calculated length
+                printf("\nString: \"%s\"\n", str1);
+                printf("Length: %d characters\n", length);
                 break;                                                    // Exit case 4
             }                                                             // End of case 4
             
             case 5: {                                                     // Handle option 5 - uppercase conversion
-                cout << "\nEnter a string: ";                             // Prompt for string input
-                cin.getline(str1, 100);                                  // Read string
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 
-                cout << "\nOriginal string: \"" << str1 << "\"" << endl;  // Display original string
+                printf("\nOriginal string: \"%s\"\n", str1);
                 toUppercase(str1);                                        // Call uppercase conversion function
-                cout << "Uppercase string: \"" << str1 << "\"" << endl;   // Display converted string
+                printf("Uppercase string: \"%s\"\n", str1);
                 break;                                                    // Exit case 5
             }                                                             // End of case 5
             
             case 6: {                                                     // Handle option 6 - string reversal
-                cout << "\nEnter a string: ";                             // Prompt for string input
-                cin.getline(str1, 100);                                  // Read string
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 
-                cout << "\nOriginal string: \"" << str1 << "\"" << endl;  // Display original string
+                printf("\nOriginal string: \"%s\"\n", str1);
                 reverseString(str1);                                      // Call string reversal function
-                cout << "Reversed string: \"" << str1 << "\"" << endl;    // Display reversed string
+                printf("Reversed string: \"%s\"\n", str1);
                 break;                                                    // Exit case 6
             }                                                             // End of case 6
             
             case 0:                                                       // Handle option 0 - exit
-                cout << "\nExiting program. Thank you!" << endl;          // Display exit message
+                printf("\nExiting program. Thank you!\n");
                 break;                                                    // Exit case 0
                 
             default:                                                      // Handle invalid input
-                cout << "\nInvalid choice! Please enter a number between 0-6." << endl; // Display error message
+                printf("\nInvalid choice! Please enter a number between 0-6.\n");
                 break;                                                    // Exit default case
         }                                                                 // End of switch statement
         
