@@ -4,10 +4,13 @@
  *
  * PURPOSE: Implement binary search algorithm using both recursive and iterative approaches
  *          to search for an element in a sorted array efficiently.
+ *
+ * IMPLEMENTATION NOTES:
+ * - No external libraries included. Uses forward-declared C runtime functions.
  */
 
-#include <iostream>
-using namespace std;
+extern "C" int printf(const char*, ...);
+extern "C" int scanf(const char*, ...);
 
 // Recursive Binary Search Function
 // Purpose: Searches for target element using divide-and-conquer approach
@@ -70,57 +73,57 @@ int binarySearchIterative(int arr[], int n, int target) {               // Funct
 int main() {
     int n, target, choice;
 
-    cout << "=== BINARY SEARCH DEMONSTRATION ===" << endl;
-    cout << "Note: Please ensure your array is sorted in ascending order." << endl;
+    printf("=== BINARY SEARCH DEMONSTRATION ===\n");
+    printf("Note: Please ensure your array is sorted in ascending order.\n");
 
-    cout << "\nEnter the number of elements: ";
-    cin >> n;
+    printf("\nEnter the number of elements: ");
+    if (scanf("%d", &n) != 1) { printf("Invalid input.\n"); return 1; }
 
     int arr[100];
-    cout << "Enter " << n << " sorted elements: ";
+    printf("Enter %d sorted elements: ", n);
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+        if (scanf("%d", &arr[i]) != 1) { printf("Invalid input.\n"); return 1; }
     }
 
-    cout << "\nArray: ";
-    for (int i = 0; i < n; i++) { cout << arr[i] << " "; }
-    cout << endl;
+    printf("\nArray: ");
+    for (int i = 0; i < n; i++) { printf("%d ", arr[i]); }
+    printf("\n");
 
-    cout << "\nEnter element to search: ";
-    cin >> target;
+    printf("\nEnter element to search: ");
+    if (scanf("%d", &target) != 1) { printf("Invalid input.\n"); return 1; }
 
-    cout << "\n=== BINARY SEARCH MENU ===" << endl;
-    cout << "1. Recursive Binary Search" << endl;
-    cout << "2. Iterative Binary Search" << endl;
-    cout << "Enter your choice (1 or 2): ";
-    cin >> choice;
+    printf("\n=== BINARY SEARCH MENU ===\n");
+    printf("1. Recursive Binary Search\n");
+    printf("2. Iterative Binary Search\n");
+    printf("Enter your choice (1 or 2): ");
+    if (scanf("%d", &choice) != 1) { printf("Invalid input.\n"); return 1; }
 
     int result = -1;
 
     switch (choice) {
         case 1: {
-            cout << "\nUsing Recursive Binary Search..." << endl;
+            printf("\nUsing Recursive Binary Search...\n");
             result = binarySearchRecursive(arr, 0, n - 1, target);
             break;
         }
         case 2: {
-            cout << "\nUsing Iterative Binary Search..." << endl;
+            printf("\nUsing Iterative Binary Search...\n");
             result = binarySearchIterative(arr, n, target);
             break;
         }
         default:
-            cout << "Invalid choice! Using Recursive Binary Search by default." << endl;
+            printf("Invalid choice! Using Recursive Binary Search by default.\n");
             result = binarySearchRecursive(arr, 0, n - 1, target);
             break;
     }
 
-    cout << "\n=== SEARCH RESULT ===" << endl;
+    printf("\n=== SEARCH RESULT ===\n");
     if (result != -1) {
-        cout << "Element " << target << " found at index " << result << endl;
-        cout << "Position in array: " << (result + 1) << endl;
+        printf("Element %d found at index %d\n", target, result);
+        printf("Position in array: %d\n", (result + 1));
     } else {
-        cout << "Element " << target << " not found in the array." << endl;
-        cout << "Make sure the array is sorted in ascending order." << endl;
+        printf("Element %d not found in the array.\n", target);
+        printf("Make sure the array is sorted in ascending order.\n");
     }
 
     return 0;
