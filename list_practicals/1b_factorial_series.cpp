@@ -6,8 +6,7 @@
  *          S = 1 + 1/2! + 1/3! + 1/4! + ... + 1/n!
  *
  * IMPLEMENTATION NOTES:
- * - No headers are included. Minimal C runtime prototypes are forward-declared
- *   and used for console I/O and argument parsing.
+ * - No external libraries included. Uses forward-declared C runtime functions.
  *
  * ALGORITHM:
  * 1. Accept number of terms (n) from user or command line
@@ -17,10 +16,6 @@
  *    - Add 1/i! to the sum
  * 4. Display the final sum
  *
- * INPUT: Number of terms (n)
- * OUTPUT: Sum of the factorial series
- *
- * EXAMPLE: For n = 4, S = 1 + 1/2 + 1/6 + 1/24 = 1.708333...
  * NOTE: This series converges to e (Euler's number) ≈ 2.71828
  */
 
@@ -44,26 +39,29 @@ int main(int argc, char* argv[]) {
     int n;
 
     if (argc > 1) {
-        n = parseInt(argv[1]);
+        n = atoi(argv[1]);
     } else {
-        cout << "Enter the number of terms: ";
-        cin >> n;
+        printf("Enter the number of terms: ");
+        if (scanf("%d", &n) != 1) {
+            printf("Invalid input.\n");
+            return 1;
+        }
     }
 
     double series = 1.0;
 
-    cout << "\nCalculating factorial series with " << n << " terms:" << endl;
-    cout << "Series: 1";
+    printf("\nCalculating factorial series with %d terms:\n", n);
+    printf("Series: 1");
 
     for (int i = 2; i <= n; i++) {
         double term = 1.0 / factorial(i);
         series += term;
-        cout << " + 1/" << i << "!";
+        printf(" + 1/%d!", i);
     }
 
-    cout << " = " << series << endl;
-    cout << "\nFactorial Series Sum = " << series << endl;
-    cout << "Note: This series converges to e (Euler's number) ≈ 2.71828" << endl;
+    printf(" = %.10f\n", series);
+    printf("\nFactorial Series Sum = %.10f\n", series);
+    printf("Note: This series converges to e (Euler's number) ≈ 2.71828\n");
 
     return 0;
 }
