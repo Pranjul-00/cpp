@@ -34,15 +34,15 @@ using namespace std;                    // Use standard namespace to avoid writi
 // Parameters: a, b - two positive integers
 // Returns: Greatest Common Divisor of a and b
 // Base case: when b becomes 0, a is the GCD
-int gcdRecursive(int a, int b) {                                         // 40: Function definition for recursive GCD
+int gcdRecursive(int a, int b) {                                         // Function definition for recursive GCD
     // Base case: if b is 0, then GCD is a
-    if (b == 0) {                                                        // 42: Check if second number is zero (base case)
-        return a;                                                        // 43: Return first number as GCD
-    }                                                                    // 44: End of base case
+    if (b == 0) {                                                        // Check if second number is zero (base case)
+        return a;                                                        // Return first number as GCD
+    }                                                                    // End of base case
     
     // Recursive case: gcd(a, b) = gcd(b, a % b)
-    cout << "gcd(" << a << ", " << b << ") = gcd(" << b << ", " << (a % b) << ")" << endl; // 47: Display recursive step
-    return gcdRecursive(b, a % b);                                       // 48: Recursive call with b and remainder
+    cout << "gcd(" << a << ", " << b << ") = gcd(" << b << ", " << (a % b) << ")" << endl; // Display recursive step
+    return gcdRecursive(b, a % b);                                       // Recursive call with b and remainder
 }
 
 // Iterative implementation of Euclidean Algorithm for GCD
@@ -50,7 +50,7 @@ int gcdRecursive(int a, int b) {                                         // 40: 
 // Parameters: a, b - two positive integers
 // Returns: Greatest Common Divisor of a and b
 // More memory efficient than recursive version
-int gcdIterative(int a, int b) {                                         // 55: Function definition for iterative GCD
+int gcdIterative(int a, int b) {                                         //  Function definition for iterative GCD
     cout << "\nIterative GCD calculation steps:" << endl;                // 56: Display calculation header
     
     // Continue until b becomes 0
