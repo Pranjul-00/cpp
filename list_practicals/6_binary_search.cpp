@@ -44,20 +44,20 @@ int binarySearchRecursive(int arr[], int left, int right, int target) {     // F
     }                                                                       // End of base case
     
     // Calculate middle index to avoid overflow
-    int mid = left + (right - left) / 2;                                   // 47: Calculate middle index safely
+    int mid = left + (right - left) / 2;                                   // Calculate middle index safely
     
     // Element found at middle
-    if (arr[mid] == target) {                                               // 50: Check if middle element matches target
-        return mid;                                                         // 51: Return index if element found
-    }                                                                       // 52: End of found case
+    if (arr[mid] == target) {                                               // Check if middle element matches target
+        return mid;                                                         // Return index if element found
+    }                                                                       // End of found case
     
     // Target is in left half
-    if (arr[mid] > target) {                                                // 55: Check if target is smaller than middle element
-        return binarySearchRecursive(arr, left, mid - 1, target);          // 56: Recursively search left half
-    }                                                                       // 57: End of left half case
+    if (arr[mid] > target) {                                                // Check if target is smaller than middle element
+        return binarySearchRecursive(arr, left, mid - 1, target);          // Recursively search left half
+    }                                                                       // End of left half case
     
     // Target is in right half
-    return binarySearchRecursive(arr, mid + 1, right, target);             // 60: Recursively search right half
+    return binarySearchRecursive(arr, mid + 1, right, target);             // Recursively search right half
 }
 
 // Binary search implementation using iteration (loop-based approach)
