@@ -32,11 +32,11 @@
  * WHITESPACE CHARACTERS REMOVED: space(' '), tab('\t'), newline('\n'), carriage return('\r')
  */
 
-#include <iostream>                       // 32: Include input/output stream library for cout, cin
-#include <fstream>                        // 33: Include file stream library for file operations
-using namespace std;                    // 34: Use standard namespace to avoid writing std:: prefix for file stream operations
+#include <iostream>                       // Include input/output stream library for cout, cin
+#include <fstream>                        // Include file stream library for file operations
+using namespace std;                    // Use standard namespace to avoid writing std:: prefix for file stream operations
 
-int main() {                                                             // 36: Main function definition
+int main() {                                                             //  Main function definition
     string sourceFile, destFile;                                        // 37: Variables to store file names
     
     cout << "=== FILE COPY PROGRAM ===" << endl;                        // 39: Display program header
