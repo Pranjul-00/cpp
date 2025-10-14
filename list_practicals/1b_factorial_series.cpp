@@ -5,9 +5,6 @@
  * PURPOSE: Calculate the sum of a factorial series where each term follows the pattern:
  *          S = 1 + 1/2! + 1/3! + 1/4! + ... + 1/n!
  *
- * IMPLEMENTATION NOTES:
- * - No external libraries included. Uses forward-declared C runtime functions.
- *
  * ALGORITHM:
  * 1. Accept number of terms (n) from user or command line
  * 2. Start with sum = 1 (first term)
@@ -16,12 +13,16 @@
  *    - Add 1/i! to the sum
  * 4. Display the final sum
  *
+ * INPUT: Number of terms (n)
+ * OUTPUT: Sum of the factorial series
+ *
+ * EXAMPLE: For n = 4, S = 1 + 1/2 + 1/6 + 1/24 = 1.708333...
  * NOTE: This series converges to e (Euler's number) ≈ 2.71828
  */
 
-extern "C" int printf(const char*, ...);
-extern "C" int scanf(const char*, ...);
-extern "C" int atoi(const char*);
+#include <iostream>
+#include <cstdlib>
+using namespace std;
 
 // Function to calculate factorial of a number using iterative method
 // Parameters: n - the number whose factorial is to be calculated
@@ -41,27 +42,24 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         n = atoi(argv[1]);
     } else {
-        printf("Enter the number of terms: ");
-        if (scanf("%d", &n) != 1) {
-            printf("Invalid input.\n");
-            return 1;
-        }
+        cout << "Enter the number of terms: ";
+        cin >> n;
     }
 
     double series = 1.0;
 
-    printf("\nCalculating factorial series with %d terms:\n", n);
-    printf("Series: 1");
+    cout << "\nCalculating factorial series with " << n << " terms:" << endl;
+    cout << "Series: 1";
 
     for (int i = 2; i <= n; i++) {
         double term = 1.0 / factorial(i);
         series += term;
-        printf(" + 1/%d!", i);
+        cout << " + 1/" << i << "!";
     }
 
-    printf(" = %.10f\n", series);
-    printf("\nFactorial Series Sum = %.10f\n", series);
-    printf("Note: This series converges to e (Euler's number) ≈ 2.71828\n");
+    cout << " = " << series << endl;
+    cout << "\nFactorial Series Sum = " << series << endl;
+    cout << "Note: This series converges to e (Euler's number) ≈ 2.71828" << endl;
 
     return 0;
 }

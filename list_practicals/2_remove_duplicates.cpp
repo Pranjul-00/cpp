@@ -5,75 +5,69 @@
  * PURPOSE: Remove duplicate elements from an array and display the unique elements
  *          in the order they first appear in the original array.
  *
- * IMPLEMENTATION NOTES:
- * - No external libraries included. Uses forward-declared C runtime functions.
+ * INPUT: Array size and elements
+ * OUTPUT: Array with duplicates removed
  */
 
-extern "C" int printf(const char*, ...);
-extern "C" int scanf(const char*, ...);
+#include <iostream>
+using namespace std;
 
 int main() {
     int n;
 
-    printf("=== REMOVE DUPLICATES FROM ARRAY ===\n");
-    printf("Enter the number of elements: ");
-    if (scanf("%d", &n) != 1) {
-        printf("Invalid input.\n");
-        return 1;
-    }
+    cout << "=== REMOVE DUPLICATES FROM ARRAY ===" << endl;
+    cout << "Enter the number of elements: ";
+    cin >> n;
 
     if (n <= 0 || n > 100) {
-        printf("Error: Please enter a valid size between 1 and 100.\n");
+        cout << "Error: Please enter a valid size between 1 and 100." << endl;
         return 1;
     }
 
     int arr[100];
 
-    printf("Enter %d elements: ", n);
+    cout << "Enter " << n << " elements: ";
     for (int i = 0; i < n; i++) {
-        if (scanf("%d", &arr[i]) != 1) {
-            printf("Invalid input.\n");
-            return 1;
-        }
+        cin >> arr[i];
     }
 
-    printf("\nOriginal array: ");
+    cout << "\nOriginal array: ";
     for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+        cout << arr[i] << " ";
     }
-    printf("\n");
+    cout << endl;
 
     int unique[100];
     int uniqueCount = 0;
 
-    printf("\nRemoving duplicates...\n");
+    cout << "\nRemoving duplicates..." << endl;
 
     for (int i = 0; i < n; i++) {
         bool isDuplicate = false;
         for (int j = 0; j < uniqueCount; j++) {
             if (arr[i] == unique[j]) {
                 isDuplicate = true;
-                printf("Duplicate found: %d (skipping)\n", arr[i]);
+                cout << "Duplicate found: " << arr[i] << " (skipping)" << endl;
                 break;
             }
         }
         if (!isDuplicate) {
             unique[uniqueCount] = arr[i];
-            printf("Adding unique element: %d\n", arr[i]);
+            cout << "Adding unique element: " << arr[i] << endl;
             uniqueCount++;
         }
     }
 
-    printf("\n=== RESULT ===\n");
-    printf("Array after removing duplicates: ");
+    cout << "\n=== RESULT ===" << endl;
+    cout << "Array after removing duplicates: ";
     for (int i = 0; i < uniqueCount; i++) {
-        printf("%d ", unique[i]);
+        cout << unique[i] << " ";
     }
-    printf("\n");
+    cout << endl;
 
-    printf("\nOriginal array size: %d\n", n);
-    printf("Array size after removing duplicates: %d\n", uniqueCount);
-    printf("Number of duplicates removed: %d\n", (n - uniqueCount));
+    cout << "\nOriginal array size: " << n << endl;
+    cout << "Array size after removing duplicates: " << uniqueCount << endl;
+    cout << "Number of duplicates removed: " << (n - uniqueCount) << endl;
 
     return 0;
 }
