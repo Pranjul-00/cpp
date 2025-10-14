@@ -103,29 +103,29 @@ int calculateLength(char* str) {                                         // Func
 // Purpose: Converts all lowercase letters in string to uppercase
 // Parameter: str - string to be converted (modified in-place)
 // Note: Uses ASCII value difference between 'a' and 'A' (32)
-void toUppercase(char* str) {                                            // 106: Function definition with char pointer
-    for (int i = 0; str[i] != '\0'; i++) {                               // 107: Loop through each character
+void toUppercase(char* str) {                                            // Function definition with char pointer
+    for (int i = 0; str[i] != '\0'; i++) {                               // Loop through each character
         // Check if character is lowercase letter
-        if (str[i] >= 'a' && str[i] <= 'z') {                            // 109: Check if character is lowercase
-            str[i] = str[i] - 32;                                         // 110: Convert to uppercase (subtract ASCII difference)
-        }                                                                 // 111: End of lowercase check
+        if (str[i] >= 'a' && str[i] <= 'z') {                            // Check if character is lowercase
+            str[i] = str[i] - 32;                                         // Convert to uppercase (subtract ASCII difference)
+        }                                                                 // End of lowercase check
         // Non-lowercase characters remain unchanged
-    }                                                                     // 113: End of conversion loop
+    }                                                                     // End of conversion loop
 }
 
 // Function to reverse a string in-place (without strrev)
 // Purpose: Reverses the order of characters in the string
 // Parameter: str - string to be reversed (modified in-place)
 // Algorithm: Swap characters from both ends moving towards center
-void reverseString(char* str) {                                          // 120: Function definition with char pointer
-    int len = calculateLength(str);                                       // 121: Get string length using our custom function
+void reverseString(char* str) {                                          // Function definition with char pointer
+    int len = calculateLength(str);                                       // Get string length using our custom function
     
     // Swap characters from start and end, moving towards center
-    for (int i = 0; i < len / 2; i++) {                                  // 124: Loop from start to middle of string
-        char temp = str[i];                                               // 125: Store character from start in temporary variable
-        str[i] = str[len - 1 - i];                                       // 126: Move character from end to start position
-        str[len - 1 - i] = temp;                                         // 127: Move stored character to end position
-    }                                                                     // 128: End of swapping loop
+    for (int i = 0; i < len / 2; i++) {                                  // Loop from start to middle of string
+        char temp = str[i];                                               // Store character from start in temporary variable
+        str[i] = str[len - 1 - i];                                       // Move character from end to start position
+        str[len - 1 - i] = temp;                                         // Move stored character to end position
+    }                                                                     // End of swapping loop
 }
 
 // Function to insert one string into another at specified position
@@ -154,62 +154,62 @@ void insertString(char* mainStr, char* insertStr, int pos, char* result) {
 }
 
 // Main function - Menu-driven program for string operations
-int main() {                                                             // 131: Main function definition
-    int choice;                                                           // 132: Variable to store user menu choice
-    char str1[100], str2[100], result[200];                              // 133: Character arrays for string storage
+int main() {                                                             // Main function definition
+    int choice;                                                           // Variable to store user menu choice
+    char str1[100], str2[100], result[200];                              // Character arrays for string storage
     
-    do {                                                                  // 135: Start of menu loop
+    do {                                                                  // Start of menu loop
         // Display menu options
-        cout << "\n=== STRING MANIPULATION MENU ===" << endl;             // 137: Display menu header
-        cout << "1. Show Memory Addresses of Characters" << endl;          // 138: Display option 1
-        cout << "2. Concatenate Two Strings" << endl;                     // 139: Display option 2
-        cout << "3. Compare Two Strings" << endl;                         // 140: Display option 3
-        cout << "4. Calculate String Length" << endl;                     // 141: Display option 4
-        cout << "5. Convert to Uppercase" << endl;                        // 142: Display option 5
-        cout << "6. Reverse String" << endl;                              // 143: Display option 6
-        cout << "0. Exit" << endl;                                        // 144: Display exit option
-        cout << "\nEnter your choice: ";                                  // 145: Prompt for user input
-        cin >> choice;                                                    // 146: Read user choice
-        cin.ignore();                                                     // 147: Clear input buffer after reading integer
+        cout << "\n=== STRING MANIPULATION MENU ===" << endl;             // Display menu header
+        cout << "1. Show Memory Addresses of Characters" << endl;          // Display option 1
+        cout << "2. Concatenate Two Strings" << endl;                     // Display option 2
+        cout << "3. Compare Two Strings" << endl;                         // Display option 3
+        cout << "4. Calculate String Length" << endl;                     // Display option 4
+        cout << "5. Convert to Uppercase" << endl;                        // Display option 5
+        cout << "6. Reverse String" << endl;                              // Display option 6
+        cout << "0. Exit" << endl;                                        // Display exit option
+        cout << "\nEnter your choice: ";                                  // Prompt for user input
+        cin >> choice;                                                    // Read user choice
+        cin.ignore();                                                     // Clear input buffer after reading integer
         
-        switch (choice) {                                                 // 149: Start switch statement for menu handling
-            case 1: {                                                     // 150: Handle option 1 - show addresses
-                cout << "\nEnter a string: ";                             // 151: Prompt for string input
-                cin.getline(str1, 100);                                  // 152: Read string with spaces
-                showAddresses(str1);                                      // 153: Call function to display addresses
-                break;                                                    // 154: Exit case 1
-            }                                                             // 155: End of case 1
+        switch (choice) {                                                 // Start switch statement for menu handling
+            case 1: {                                                     // Handle option 1 - show addresses
+                cout << "\nEnter a string: ";                             // Prompt for string input
+                cin.getline(str1, 100);                                  // Read string with spaces
+                showAddresses(str1);                                      // Call function to display addresses
+                break;                                                    // Exit case 1
+            }                                                             // End of case 1
             
-            case 2: {                                                     // 157: Handle option 2 - concatenation
-                cout << "\nEnter first string: ";                         // 158: Prompt for first string
-                cin.getline(str1, 100);                                  // 159: Read first string
-                cout << "Enter second string: ";                          // 160: Prompt for second string
-                cin.getline(str2, 100);                                  // 161: Read second string
+            case 2: {                                                     // Handle option 2 - concatenation
+                cout << "\nEnter first string: ";                         // Prompt for first string
+                cin.getline(str1, 100);                                  // Read first string
+                cout << "Enter second string: ";                          // Prompt for second string
+                cin.getline(str2, 100);                                  // Read second string
                 
-                concatenateStrings(str1, str2, result);                  // 163: Call concatenation function
-                cout << "\nConcatenated string: \"" << result << "\"" << endl; // 164: Display result
-                cout << "First string: \"" << str1 << "\"" << endl;        // 165: Display original first string
-                cout << "Second string: \"" << str2 << "\"" << endl;       // 166: Display original second string
-                break;                                                    // 167: Exit case 2
-            }                                                             // 168: End of case 2
+                concatenateStrings(str1, str2, result);                  // Call concatenation function
+                cout << "\nConcatenated string: \"" << result << "\"" << endl; // Display result
+                cout << "First string: \"" << str1 << "\"" << endl;        // Display original first string
+                cout << "Second string: \"" << str2 << "\"" << endl;       // Display original second string
+                break;                                                    // Exit case 2
+            }                                                             // End of case 2
             
-            case 3: {                                                     // 170: Handle option 3 - comparison
-                cout << "\nEnter first string: ";                         // 171: Prompt for first string
-                cin.getline(str1, 100);                                  // 172: Read first string
-                cout << "Enter second string: ";                          // 173: Prompt for second string
-                cin.getline(str2, 100);                                  // 174: Read second string
+            case 3: {                                                     // Handle option 3 - comparison
+                cout << "\nEnter first string: ";                         // Prompt for first string
+                cin.getline(str1, 100);                                  // Read first string
+                cout << "Enter second string: ";                          // Prompt for second string
+                cin.getline(str2, 100);                                  // Read second string
                 
-                int comparison = compareStrings(str1, str2);             // 176: Call comparison function
-                cout << "\nComparison result: ";                          // 177: Display result header
-                if (comparison == 0) {                                    // 178: Check if strings are equal
-                    cout << "Strings are equal" << endl;                  // 179: Display equal message
-                } else if (comparison < 0) {                              // 180: Check if first string is smaller
-                    cout << "First string is lexicographically smaller" << endl; // 181: Display smaller message
-                } else {                                                  // 182: Else first string is larger
-                    cout << "First string is lexicographically larger" << endl;  // 183: Display larger message
-                }                                                         // 184: End of comparison result display
-                break;                                                    // 185: Exit case 3
-            }                                                             // 186: End of case 3
+                int comparison = compareStrings(str1, str2);             // Call comparison function
+                cout << "\nComparison result: ";                          // Display result header
+                if (comparison == 0) {                                    // Check if strings are equal
+                    cout << "Strings are equal" << endl;                  // Display equal message
+                } else if (comparison < 0) {                              // Check if first string is smaller
+                    cout << "First string is lexicographically smaller" << endl; // Display smaller message
+                } else {                                                  // Else first string is larger
+                    cout << "First string is lexicographically larger" << endl;  // Display larger message
+                }                                                         // End of comparison result display
+                break;                                                    // Exit case 3
+            }                                                             // End of case 3
             
             case 4: {                                                     // 188: Handle option 4 - length calculation
                 cout << "\nEnter a string: ";                             // 189: Prompt for string input
