@@ -29,8 +29,8 @@
  * EXAMPLE: [1,3,5] + [2,4,6,7] → [1,2,3,4,5,6,7]
  */
 
-#include <iostream>                       // Line 34: Include input/output stream library for cout, cin
-using namespace std;                    // Line 35: Use standard namespace to avoid writing std:: prefix
+#include <iostream>                       // Include input/output stream library for cout, cin
+using namespace std;                    // Use standard namespace to avoid writing std:: prefix
 
 int main() {                                                             // Line 37: Main function definition
     int n1, n2;                                                          // Line 38: Variables to store array sizes

@@ -211,46 +211,46 @@ int main() {                                                             // Main
                 break;                                                    // Exit case 3
             }                                                             // End of case 3
             
-            case 4: {                                                     // 188: Handle option 4 - length calculation
-                cout << "\nEnter a string: ";                             // 189: Prompt for string input
-                cin.getline(str1, 100);                                  // 190: Read string
+            case 4: {                                                     // Handle option 4 - length calculation
+                cout << "\nEnter a string: ";                             // Prompt for string input
+                cin.getline(str1, 100);                                  // Read string
                 
-                int length = calculateLength(str1);                      // 192: Call length calculation function
-                cout << "\nString: \"" << str1 << "\"" << endl;            // 193: Display original string
-                cout << "Length: " << length << " characters" << endl;    // 194: Display calculated length
-                break;                                                    // 195: Exit case 4
-            }                                                             // 196: End of case 4
+                int length = calculateLength(str1);                      // Call length calculation function
+                cout << "\nString: \"" << str1 << "\"" << endl;            // Display original string
+                cout << "Length: " << length << " characters" << endl;    // Display calculated length
+                break;                                                    // Exit case 4
+            }                                                             // End of case 4
             
-            case 5: {                                                     // 198: Handle option 5 - uppercase conversion
-                cout << "\nEnter a string: ";                             // 199: Prompt for string input
-                cin.getline(str1, 100);                                  // 200: Read string
+            case 5: {                                                     // Handle option 5 - uppercase conversion
+                cout << "\nEnter a string: ";                             // Prompt for string input
+                cin.getline(str1, 100);                                  // Read string
                 
-                cout << "\nOriginal string: \"" << str1 << "\"" << endl;  // 202: Display original string
-                toUppercase(str1);                                        // 203: Call uppercase conversion function
-                cout << "Uppercase string: \"" << str1 << "\"" << endl;   // 204: Display converted string
-                break;                                                    // 205: Exit case 5
-            }                                                             // 206: End of case 5
+                cout << "\nOriginal string: \"" << str1 << "\"" << endl;  // Display original string
+                toUppercase(str1);                                        // Call uppercase conversion function
+                cout << "Uppercase string: \"" << str1 << "\"" << endl;   // Display converted string
+                break;                                                    // Exit case 5
+            }                                                             // End of case 5
             
-            case 6: {                                                     // 208: Handle option 6 - string reversal
-                cout << "\nEnter a string: ";                             // 209: Prompt for string input
-                cin.getline(str1, 100);                                  // 210: Read string
+            case 6: {                                                     // Handle option 6 - string reversal
+                cout << "\nEnter a string: ";                             // Prompt for string input
+                cin.getline(str1, 100);                                  // Read string
                 
-                cout << "\nOriginal string: \"" << str1 << "\"" << endl;  // 212: Display original string
-                reverseString(str1);                                      // 213: Call string reversal function
-                cout << "Reversed string: \"" << str1 << "\"" << endl;    // 214: Display reversed string
-                break;                                                    // 215: Exit case 6
-            }                                                             // 216: End of case 6
+                cout << "\nOriginal string: \"" << str1 << "\"" << endl;  // Display original string
+                reverseString(str1);                                      // Call string reversal function
+                cout << "Reversed string: \"" << str1 << "\"" << endl;    // Display reversed string
+                break;                                                    // Exit case 6
+            }                                                             // End of case 6
             
-            case 0:                                                       // 218: Handle option 0 - exit
-                cout << "\nExiting program. Thank you!" << endl;          // 219: Display exit message
-                break;                                                    // 220: Exit case 0
+            case 0:                                                       // Handle option 0 - exit
+                cout << "\nExiting program. Thank you!" << endl;          // Display exit message
+                break;                                                    // Exit case 0
                 
-            default:                                                      // 222: Handle invalid input
-                cout << "\nInvalid choice! Please enter a number between 0-6." << endl; // 223: Display error message
-                break;                                                    // 224: Exit default case
-        }                                                                 // 225: End of switch statement
+            default:                                                      // Handle invalid input
+                cout << "\nInvalid choice! Please enter a number between 0-6." << endl; // Display error message
+                break;                                                    // Exit default case
+        }                                                                 // End of switch statement
         
-    } while (choice != 0);                                               // 227: Continue loop until user chooses exit
+    } while (choice != 0);                                               // Continue loop until user chooses exit
     
-    return 0;                                                             // 229: Return 0 to indicate successful execution
+    return 0;                                                             // Return 0 to indicate successful execution
 }
