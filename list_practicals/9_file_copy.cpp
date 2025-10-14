@@ -2,75 +2,68 @@
  * PRACTICAL 9: FILE COPY WITH WHITESPACE REMOVAL
  * ==============================================
  *
- * PURPOSE: Copy contents from one file to another while removing all whitespace
- *          characters (spaces, tabs, newlines, carriage returns).
- *
- * IMPLEMENTATION NOTES:
- * - No external libraries included. Uses forward-declared C runtime functions.
+ * PURPOSE: Copy content from one file to another while removing all whitespace
+ *          characters (spaces, tabs, newlines) from the source file.
  */
 
-extern "C" int printf(const char*, ...);
-extern "C" int scanf(const char*, ...);
-typedef struct _FILE FILE;
-extern "C" FILE* fopen(const char*, const char*);
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 extern "C" int fclose(FILE*);
 extern "C" int fputc(int, FILE*);
 extern "C" int fgetc(FILE*);
 
 int main() {
-    char sourceFile[260], destFile[260];
+    string sourceFile, destFile;
     
-    printf("=== FILE COPY PROGRAM ===\n");
-    printf("This program copies content from source file to destination file\n");
-    printf("while removing all whitespace characters (spaces, tabs, newlines).\n");
+    cout << "=== FILE COPY WITH WHITESPACE REMOVAL ===" << endl;
+    cout << "\nEnter source filename: ";
+    cin >> sourceFile;
     
-    printf("\nEnter source file name (with extension): ");
-    if (scanf("%259s", sourceFile) != 1) { printf("Invalid input.\n"); return 1; }
-    printf("Enter destination file name (with extension): ");
-    if (scanf("%259s", destFile) != 1) { printf("Invalid input.\n"); return 1; }
+    cout << "Enter destination filename: ";
+    cin >> destFile;
     
-    FILE* source = fopen(sourceFile, "rb");
-    if (!source) {
-        printf("\nError: Could not open source file '%s'\n", sourceFile);
-        printf("Please check if the file exists and you have read permissions.\n");
+    ifstream source(sourceFile);
+    if (!source.is_open()) {
+        cout << "Error: Cannot open source file '" << sourceFile << "' for reading." << endl;
+        cout << "Please check if the file exists and you have read permissions." << endl;
         return 1;
     }
     
-    FILE* destination = fopen(destFile, "wb");
-    if (!destination) {
-        printf("\nError: Could not create/open destination file '%s'\n", destFile);
-        printf("Please check if you have write permissions in the directory.\n");
-        fclose(source);
+    ofstream dest(destFile);
+    if (!dest.is_open()) {
+        cout << "Error: Cannot open destination file '" << destFile << "' for writing." << endl;
+        cout << "Please check if you have write permissions in the directory." << endl;
+        source.close();
         return 1;
     }
     
-    printf("\nFiles opened successfully!\n");
-    printf("Copying content from '%s' to '%s'...\n", sourceFile, destFile);
-    printf("Removing whitespace characters during copy process.\n");
+    cout << "\nCopying from '" << sourceFile << "' to '" << destFile << "' (removing whitespace)..." << endl;
     
-    int ch;
+    char ch;
     int totalChars = 0, copiedChars = 0, removedChars = 0;
     
-    while ((ch = fgetc(source)) != -1) {
+    while (source.get(ch)) {
         totalChars++;
-        if (ch != ' ' && ch != '\t' && ch != '\n' && ch != '\r') {
-            fputc(ch, destination);
-            copiedChars++;
-        } else {
+        
+        if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
             removedChars++;
+        } else {
+            dest.put(ch);
+            copiedChars++;
         }
     }
     
-    fclose(source);
-    fclose(destination);
+    source.close();
+    dest.close();
     
-    printf("\n=== FILE COPY COMPLETED ===\n");
-    printf("Source file: %s\n", sourceFile);
-    printf("Destination file: %s\n", destFile);
-    printf("Total characters read: %d\n", totalChars);
-    printf("Characters copied: %d\n", copiedChars);
-    printf("Whitespace characters removed: %d\n", removedChars);
-    printf("Copy operation completed successfully!\n");
+    cout << "\n=== COPY STATISTICS ===" << endl;
+    cout << "Total characters read: " << totalChars << endl;
+    cout << "Characters copied: " << copiedChars << endl;
+    cout << "Whitespace characters removed: " << removedChars << endl;
+    cout << "\nFile copy completed successfully!" << endl;
+    cout << "Output saved to: " << destFile << endl;
     
     return 0;
 }
