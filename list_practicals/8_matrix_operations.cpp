@@ -4,25 +4,21 @@
  *
  * PURPOSE: Implement fundamental matrix operations including addition, multiplication,
  *          and transpose using 2D arrays with a menu-driven interface.
- *
- * IMPLEMENTATION NOTES:
- * - No headers are included. Minimal C runtime prototypes are forward-declared
- *   and used for console I/O.
  */
 
-extern "C" int printf(const char*, ...);
-extern "C" int scanf(const char*, ...);
+#include <iostream>
+using namespace std;
 
 // Function to input matrix elements from user
 // Purpose: Reads matrix elements row by row from user input
 // Parameters: matrix - 2D array to store elements, rows - number of rows, cols - number of columns
 void inputMatrix(int matrix[10][10], int rows, int cols) {               // Function definition for matrix input
-    printf("Enter matrix elements (%dx%d):\n", rows, cols);
+    cout << "Enter matrix elements (" << rows << "x" << cols << "):" << endl;
     
     for (int i = 0; i < rows; i++) {                                     // Loop through each row
-        printf("Row %d: ", (i + 1));
+        cout << "Row " << (i + 1) << ": ";
         for (int j = 0; j < cols; j++) {                                 // Loop through each column in current row
-            if (scanf("%d", &matrix[i][j]) != 1) { printf("Invalid input.\n"); return; }
+            cin >> matrix[i][j];
         }                                                                // End of column loop
     }                                                                    // End of row loop
 }
@@ -31,12 +27,12 @@ void inputMatrix(int matrix[10][10], int rows, int cols) {               // Func
 // Parameters: matrix - 2D array to display, rows - number of rows, cols - number of columns
 void displayMatrix(int matrix[][10], int rows, int cols) {               // Function definition for matrix display
     for (int i = 0; i < rows; i++) {                                     // Loop through each row
-        printf("[ ");                                                     // Display opening bracket for row
+        cout << "[ ";                                                     // Display opening bracket for row
         for (int j = 0; j < cols; j++) {                                 // Loop through each column in current row
-            printf("%d", matrix[i][j]);                                  // Display element at position [i][j]
-            if (j < cols - 1) printf("\t");                             // Add tab separator between elements (except last)
+            cout << matrix[i][j];                                        // Display element at position [i][j]
+            if (j < cols - 1) cout << "\t";                              // Add tab separator between elements (except last)
         }                                                                // End of column loop
-        printf(" ]\n");                                                  // Display closing bracket and new line
+        cout << " ]" << endl;                                            // Display closing bracket and new line
     }                                                                    // End of row loop
 }
 
@@ -45,7 +41,7 @@ void displayMatrix(int matrix[][10], int rows, int cols) {               // Func
 // Parameters: mat1, mat2 - input matrices, result - output matrix, rows, cols - dimensions
 // Prerequisite: Both matrices must have same dimensions
 void addMatrices(int mat1[][10], int mat2[][10], int result[][10], int rows, int cols) { // Function definition for matrix addition
-    printf("\nPerforming matrix addition...\n");
+    cout << "\nPerforming matrix addition..." << endl;
     
     for (int i = 0; i < rows; i++) {                                     // Loop through each row
         for (int j = 0; j < cols; j++) {                                 // Loop through each column
@@ -53,7 +49,7 @@ void addMatrices(int mat1[][10], int mat2[][10], int result[][10], int rows, int
         }                                                                // End of column loop
     }                                                                    // End of row loop
     
-    printf("Matrix addition completed successfully!\n");
+    cout << "Matrix addition completed successfully!" << endl;
 }
 
 // Function to multiply two matrices using dot product
@@ -64,13 +60,13 @@ void addMatrices(int mat1[][10], int mat2[][10], int result[][10], int rows, int
 bool multiplyMatrices(int mat1[][10], int mat2[][10], int result[][10], int r1, int c1, int r2, int c2) { 
     // Check if multiplication is possible
     if (c1 != r2) {
-        printf("\nError: Matrix multiplication not possible!\n");
-        printf("Columns of first matrix (%d) must equal rows of second matrix (%d)\n", c1, r2);
+        cout << "\nError: Matrix multiplication not possible!" << endl;
+        cout << "Columns of first matrix (" << c1 << ") must equal rows of second matrix (" << r2 << ")" << endl;
         return false;
     }
     
-    printf("\nPerforming matrix multiplication...\n");
-    printf("Result will be a %dx%d matrix\n", r1, c2);
+    cout << "\nPerforming matrix multiplication..." << endl;
+    cout << "Result will be a " << r1 << "x" << c2 << " matrix" << endl;
     
     // Initialize result matrix to zero
     for (int i = 0; i < r1; i++) {
@@ -88,7 +84,7 @@ bool multiplyMatrices(int mat1[][10], int mat2[][10], int result[][10], int r1, 
         }
     }
     
-    printf("Matrix multiplication completed successfully!\n");
+    cout << "Matrix multiplication completed successfully!" << endl;
     return true;
 }
 
@@ -96,8 +92,8 @@ bool multiplyMatrices(int mat1[][10], int mat2[][10], int result[][10], int r1, 
 // Parameters: matrix - input matrix, result - transposed matrix, rows, cols - original dimensions
 // Result: rows and columns are swapped in the transposed matrix
 void transposeMatrix(int matrix[][10], int result[][10], int rows, int cols) { // Function definition for matrix transpose
-    printf("\nPerforming matrix transpose...\n");
-    printf("Original: %dx%d -> Transposed: %dx%d\n", rows, cols, cols, rows);
+    cout << "\nPerforming matrix transpose..." << endl;
+    cout << "Original: " << rows << "x" << cols << " -> Transposed: " << cols << "x" << rows << endl;
     
     // Swap rows and columns: result[j][i] = matrix[i][j]
     for (int i = 0; i < rows; i++) {                                     // Loop through original matrix rows
@@ -113,94 +109,94 @@ int main() {                                                             // Main
     int mat1[10][10], mat2[10][10], result[10][10];                     // Declare matrices with maximum size 10x10
     int r1, c1, r2, c2;                                                 // Variables for matrix dimensions
     
-    printf("=== MATRIX OPERATIONS PROGRAM ===\n");
-    printf("This program performs basic matrix operations on 2D arrays.\n");
-    printf("Maximum supported matrix size: 10x10\n");
+    cout << "=== MATRIX OPERATIONS PROGRAM ===" << endl;
+    cout << "This program performs basic matrix operations on 2D arrays." << endl;
+    cout << "Maximum supported matrix size: 10x10" << endl;
     
     // Main program loop
     while (true) {                                                       // Start infinite loop for menu
-        printf("\n--- Matrix Operations Menu ---\n");
-        printf("1. Matrix Addition (A + B)\n");
-        printf("2. Matrix Multiplication (A × B)\n");
-        printf("3. Matrix Transpose (A^T)\n");
-        printf("4. Exit Program\n");
-        printf("Enter your choice (1-4): ");
-        if (scanf("%d", &choice) != 1) { printf("Invalid input.\n"); return 1; }
+        cout << "\n--- Matrix Operations Menu ---" << endl;
+        cout << "1. Matrix Addition (A + B)" << endl;
+        cout << "2. Matrix Multiplication (A × B)" << endl;
+        cout << "3. Matrix Transpose (A^T)" << endl;
+        cout << "4. Exit Program" << endl;
+        cout << "Enter your choice (1-4): ";
+        cin >> choice;
         
         switch (choice) {                                                // Start switch statement for menu handling
             case 1: // Matrix Addition
-                printf("\n=== MATRIX ADDITION ===\n");
-                printf("Enter dimensions of first matrix (rows cols): ");
-                if (scanf("%d %d", &r1, &c1) != 2) { printf("Invalid input.\n"); return 1; }
-                printf("Enter dimensions of second matrix (rows cols): ");
-                if (scanf("%d %d", &r2, &c2) != 2) { printf("Invalid input.\n"); return 1; }
+                cout << "\n=== MATRIX ADDITION ===" << endl;
+                cout << "Enter dimensions of first matrix (rows cols): ";
+                cin >> r1 >> c1;
+                cout << "Enter dimensions of second matrix (rows cols): ";
+                cin >> r2 >> c2;
                 
                 if (r1 != r2 || c1 != c2) {                              // Check if matrices have same dimensions
-                    printf("Error: Matrices must have same dimensions for addition!\n");
-                    printf("First matrix: %dx%d, Second matrix: %dx%d\n", r1, c1, r2, c2);
+                    cout << "Error: Matrices must have same dimensions for addition!" << endl;
+                    cout << "First matrix: " << r1 << "x" << c1 << ", Second matrix: " << r2 << "x" << c2 << endl;
                     break;
                 }
                 
-                printf("\nFirst matrix (%dx%d):\n", r1, c1);
+                cout << "\nFirst matrix (" << r1 << "x" << c1 << "):" << endl;
                 inputMatrix(mat1, r1, c1);
-                printf("\nSecond matrix (%dx%d):\n", r2, c2);
+                cout << "\nSecond matrix (" << r2 << "x" << c2 << "):" << endl;
                 inputMatrix(mat2, r2, c2);
                 
-                printf("\nMatrix A:\n");
+                cout << "\nMatrix A:" << endl;
                 displayMatrix(mat1, r1, c1);
-                printf("\nMatrix B:\n");
+                cout << "\nMatrix B:" << endl;
                 displayMatrix(mat2, r2, c2);
                 
                 addMatrices(mat1, mat2, result, r1, c1);
-                printf("\nResult (A + B):\n");
+                cout << "\nResult (A + B):" << endl;
                 displayMatrix(result, r1, c1);
                 break;
                 
             case 2: // Matrix Multiplication
-                printf("\n=== MATRIX MULTIPLICATION ===\n");
-                printf("Note: Columns of first matrix must equal rows of second matrix\n");
-                printf("Enter dimensions of first matrix (rows cols): ");
-                if (scanf("%d %d", &r1, &c1) != 2) { printf("Invalid input.\n"); return 1; }
-                printf("Enter dimensions of second matrix (rows cols): ");
-                if (scanf("%d %d", &r2, &c2) != 2) { printf("Invalid input.\n"); return 1; }
+                cout << "\n=== MATRIX MULTIPLICATION ===" << endl;
+                cout << "Note: Columns of first matrix must equal rows of second matrix" << endl;
+                cout << "Enter dimensions of first matrix (rows cols): ";
+                cin >> r1 >> c1;
+                cout << "Enter dimensions of second matrix (rows cols): ";
+                cin >> r2 >> c2;
                 
-                printf("\nFirst matrix (%dx%d):\n", r1, c1);
+                cout << "\nFirst matrix (" << r1 << "x" << c1 << "):" << endl;
                 inputMatrix(mat1, r1, c1);
-                printf("\nSecond matrix (%dx%d):\n", r2, c2);
+                cout << "\nSecond matrix (" << r2 << "x" << c2 << "):" << endl;
                 inputMatrix(mat2, r2, c2);
                 
-                printf("\nMatrix A (%dx%d):\n", r1, c1);
+                cout << "\nMatrix A (" << r1 << "x" << c1 << "):" << endl;
                 displayMatrix(mat1, r1, c1);
-                printf("\nMatrix B (%dx%d):\n", r2, c2);
+                cout << "\nMatrix B (" << r2 << "x" << c2 << "):" << endl;
                 displayMatrix(mat2, r2, c2);
                 
                 if (multiplyMatrices(mat1, mat2, result, r1, c1, r2, c2)) {
-                    printf("\nResult (A × B):\n");
+                    cout << "\nResult (A × B):" << endl;
                     displayMatrix(result, r1, c2);
                 }
                 break;
                 
             case 3: // Matrix Transpose
-                printf("\n=== MATRIX TRANSPOSE ===\n");
-                printf("Enter dimensions of matrix (rows cols): ");
-                if (scanf("%d %d", &r1, &c1) != 2) { printf("Invalid input.\n"); return 1; }
-                printf("\nEnter matrix (%dx%d):\n", r1, c1);
+                cout << "\n=== MATRIX TRANSPOSE ===" << endl;
+                cout << "Enter dimensions of matrix (rows cols): ";
+                cin >> r1 >> c1;
+                cout << "\nEnter matrix (" << r1 << "x" << c1 << "):" << endl;
                 inputMatrix(mat1, r1, c1);
                 
-                printf("\nOriginal Matrix A:\n");
+                cout << "\nOriginal Matrix A:" << endl;
                 displayMatrix(mat1, r1, c1);
                 
                 transposeMatrix(mat1, result, r1, c1);
-                printf("\nTranspose of Matrix A (A^T):\n");
+                cout << "\nTranspose of Matrix A (A^T):" << endl;
                 displayMatrix(result, c1, r1);
                 break;
                 
             case 4: // Exit Program
-                printf("\nThank you for using the Matrix Operations Program!\n");
+                cout << "\nThank you for using the Matrix Operations Program!" << endl;
                 return 0;
                 
             default: // Invalid choice
-                printf("Invalid choice! Please enter a number between 1 and 4.\n");
+                cout << "Invalid choice! Please enter a number between 1 and 4." << endl;
         }
     }
     

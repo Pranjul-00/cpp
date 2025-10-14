@@ -5,10 +5,6 @@
  * PURPOSE: Count the frequency of each alphabet character from command line arguments
  *          and display the results in a tabular format.
  *
- * IMPLEMENTATION NOTES:
- * - No headers are included. Minimal C runtime prototypes are forward-declared
- *   and used for console I/O.
- *
  * INPUT: Text strings as command line arguments
  * OUTPUT: Frequency table of alphabetic characters
  *
@@ -17,23 +13,24 @@
  * CHARACTER MAPPING: 'A'/'a' → index 0, 'B'/'b' → index 1, ..., 'Z'/'z' → index 25
  */
 
-extern "C" int printf(const char*, ...);
+#include <iostream>
+using namespace std;
 
 int main(int argc, char* argv[]) {
     int count[26] = {0};
 
     if (argc < 2) {
-        printf("Usage: %s <text1> <text2> ...\n", argv[0]);
-        printf("Please provide text as command line arguments.\n");
-        printf("Example: %s \"Hello World\" \"Programming\"\n", argv[0]);
+        cout << "Usage: " << argv[0] << " <text1> <text2> ..." << endl;
+        cout << "Please provide text as command line arguments." << endl;
+        cout << "Example: " << argv[0] << " \"Hello World\" \"Programming\"" << endl;
         return 1;
     }
 
-    printf("Processing command line arguments:\n");
+    cout << "Processing command line arguments:" << endl;
 
     for (int i = 1; i < argc; i++) {
         char* str = argv[i];
-        printf("Argument %d: \"%s\"\n", i, str);
+        cout << "Argument " << i << ": \"" << str << "\"" << endl;
 
         int j = 0;
         while (str[j] != '\0') {
@@ -47,20 +44,20 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    printf("\n=== ALPHABET FREQUENCY TABLE ===\n");
-    printf("Alphabet\tOccurrences\n");
-    printf("--------\t-----------\n");
+    cout << "\n=== ALPHABET FREQUENCY TABLE ===" << endl;
+    cout << "Alphabet\tOccurrences" << endl;
+    cout << "--------\t-----------" << endl;
 
     bool foundAny = false;
     for (int i = 0; i < 26; i++) {
         if (count[i] > 0) {
-            printf("%c\t\t%d\n", (char)('A' + i), count[i]);
+            cout << (char)('A' + i) << "\t\t" << count[i] << endl;
             foundAny = true;
         }
     }
 
     if (!foundAny) {
-        printf("No alphabetic characters found in the input.\n");
+        cout << "No alphabetic characters found in the input." << endl;
     }
 
     return 0;

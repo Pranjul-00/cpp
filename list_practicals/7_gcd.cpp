@@ -4,14 +4,10 @@
  *
  * PURPOSE: Calculate the Greatest Common Divisor (GCD) of two numbers using both
  *          recursive and iterative implementations of Euclidean algorithm.
- *
- * IMPLEMENTATION NOTES:
- * - No headers are included. Minimal C runtime prototypes are forward-declared
- *   and used for console I/O.
  */
 
-extern "C" int printf(const char*, ...);
-extern "C" int scanf(const char*, ...);
+#include <iostream>
+using namespace std;
 
 // Recursive implementation of Euclidean Algorithm for GCD
 // Purpose: Finds GCD using the mathematical property: gcd(a,b) = gcd(b, a%b)
@@ -25,7 +21,7 @@ int gcdRecursive(int a, int b) {                                         // Func
     }                                                                    // End of base case
     
     // Recursive case: gcd(a, b) = gcd(b, a % b)
-    printf("gcd(%d, %d) = gcd(%d, %d)\n", a, b, b, (a % b));
+    cout << "gcd(" << a << ", " << b << ") = gcd(" << b << ", " << (a % b) << ")" << endl;
     return gcdRecursive(b, a % b);                                       // Recursive call with b and remainder
 }
 
@@ -35,17 +31,17 @@ int gcdRecursive(int a, int b) {                                         // Func
 // Returns: Greatest Common Divisor of a and b
 // More memory efficient than recursive version
 int gcdIterative(int a, int b) {                                         // Function definition for iterative GCD
-    printf("\nIterative GCD calculation steps:\n");
+    cout << "\nIterative GCD calculation steps:" << endl;
     
     // Continue until b becomes 0
     while (b != 0) {                                                     // Loop until second number becomes zero
-        printf("gcd(%d, %d) -> ", a, b);
+        cout << "gcd(" << a << ", " << b << ") -> ";
         
         int temp = b;                                                    // Store b in temporary variable
         b = a % b;                                                       // Update b to remainder of a divided by b
         a = temp;                                                        // Update a to previous value of b
         
-        printf("gcd(%d, %d)\n", a, b);
+        cout << "gcd(" << a << ", " << b << ")" << endl;
     }                                                                    // End of while loop
     
     return a;                                                            // Return GCD (when b becomes 0, a contains GCD)
@@ -55,55 +51,55 @@ int gcdIterative(int a, int b) {                                         // Func
 int main() {                                                             // Main function definition
     int num1, num2, choice;                                              // Variables for two numbers and user choice
     
-    printf("=== GCD CALCULATOR ===\n");
-    printf("Enter two positive integers:\n");
+    cout << "=== GCD CALCULATOR ===" << endl;
+    cout << "Enter two positive integers:" << endl;
     
-    printf("First number: ");
-    if (scanf("%d", &num1) != 1) { printf("Invalid input.\n"); return 1; }
-    printf("Second number: ");
-    if (scanf("%d", &num2) != 1) { printf("Invalid input.\n"); return 1; }
+    cout << "First number: ";
+    cin >> num1;
+    cout << "Second number: ";
+    cin >> num2;
     
     if (num1 <= 0 || num2 <= 0) {                                       // Check if both numbers are positive
-        printf("Error: Please enter positive integers only.\n");
+        cout << "Error: Please enter positive integers only." << endl;
         return 1;                                                        // Return error code
     }
     
-    printf("\nCalculating GCD of %d and %d\n", num1, num2);
+    cout << "\nCalculating GCD of " << num1 << " and " << num2 << endl;
     
-    printf("\n=== METHOD SELECTION ===\n");
-    printf("1. Recursive Euclidean Algorithm\n");
-    printf("2. Iterative Euclidean Algorithm\n");
-    printf("Enter your choice (1 or 2): ");
-    if (scanf("%d", &choice) != 1) { printf("Invalid input.\n"); return 1; }
+    cout << "\n=== METHOD SELECTION ===" << endl;
+    cout << "1. Recursive Euclidean Algorithm" << endl;
+    cout << "2. Iterative Euclidean Algorithm" << endl;
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
     
     int result;
     
     switch (choice) {                                                    // Start switch statement for method selection
         case 1: {                                                        // Handle recursive method option
-            printf("\n=== RECURSIVE METHOD ===\n");
-            printf("Recursive GCD calculation steps:\n");
+            cout << "\n=== RECURSIVE METHOD ===" << endl;
+            cout << "Recursive GCD calculation steps:" << endl;
             result = gcdRecursive(num1, num2);                           // Call recursive GCD function
             break;                                                       // Exit case 1
         }
         
         case 2: {                                                        // Handle iterative method option
-            printf("\n=== ITERATIVE METHOD ===\n");
+            cout << "\n=== ITERATIVE METHOD ===" << endl;
             result = gcdIterative(num1, num2);                           // Call iterative GCD function
             break;                                                       // Exit case 2
         }
         
         default:                                                         // Handle invalid choice
-            printf("Invalid choice! Using Recursive method by default.\n");
+            cout << "Invalid choice! Using Recursive method by default." << endl;
             result = gcdRecursive(num1, num2);                           // Use recursive method as default
             break;                                                       // Exit default case
     }
     
-    printf("\n=== RESULT ===\n");
-    printf("GCD of %d and %d is: %d\n", num1, num2, result);
+    cout << "\n=== RESULT ===" << endl;
+    cout << "GCD of " << num1 << " and " << num2 << " is: " << result << endl;
     
-    printf("\nMathematical verification:\n");
-    printf("%d = %d × %d\n", num1, result, (num1 / result));
-    printf("%d = %d × %d\n", num2, result, (num2 / result));
+    cout << "\nMathematical verification:" << endl;
+    cout << num1 << " = " << result << " × " << (num1 / result) << endl;
+    cout << num2 << " = " << result << " × " << (num2 / result) << endl;
     
     return 0;                                                            // Return 0 to indicate successful execution
 }
