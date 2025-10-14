@@ -44,29 +44,26 @@ int main(int argc, char* argv[]) {
     int n;
 
     if (argc > 1) {
-        n = atoi(argv[1]);
+        n = parseInt(argv[1]);
     } else {
-        printf("Enter the number of terms: ");
-        if (scanf("%d", &n) != 1) {
-            printf("Invalid input.\n");
-            return 1;
-        }
+        cout << "Enter the number of terms: ";
+        cin >> n;
     }
 
     double series = 1.0;
 
-    printf("\nCalculating factorial series with %d terms:\n", n);
-    printf("Series: 1");
+    cout << "\nCalculating factorial series with " << n << " terms:" << endl;
+    cout << "Series: 1";
 
     for (int i = 2; i <= n; i++) {
         double term = 1.0 / factorial(i);
         series += term;
-        printf(" + 1/%d!", i);
+        cout << " + 1/" << i << "!";
     }
 
-    printf(" = %.10f\n", series);
-    printf("\nFactorial Series Sum = %.10f\n", series);
-    printf("Note: This series converges to e (Euler's number) ≈ 2.71828\n");
+    cout << " = " << series << endl;
+    cout << "\nFactorial Series Sum = " << series << endl;
+    cout << "Note: This series converges to e (Euler's number) ≈ 2.71828" << endl;
 
     return 0;
 }
