@@ -50,21 +50,21 @@ int gcdRecursive(int a, int b) {                                         // Func
 // Parameters: a, b - two positive integers
 // Returns: Greatest Common Divisor of a and b
 // More memory efficient than recursive version
-int gcdIterative(int a, int b) {                                         //  Function definition for iterative GCD
-    cout << "\nIterative GCD calculation steps:" << endl;                // 56: Display calculation header
+int gcdIterative(int a, int b) {                                         // Function definition for iterative GCD
+    cout << "\nIterative GCD calculation steps:" << endl;                // Display calculation header
     
     // Continue until b becomes 0
-    while (b != 0) {                                                     // 59: Loop until second number becomes zero
-        cout << "gcd(" << a << ", " << b << ") -> ";                    // 60: Display current step
+    while (b != 0) {                                                     // Loop until second number becomes zero
+        cout << "gcd(" << a << ", " << b << ") -> ";                    // Display current step
         
-        int temp = b;                                                    // 62: Store b in temporary variable
-        b = a % b;                                                       // 63: Update b to remainder of a divided by b
-        a = temp;                                                        // 64: Update a to previous value of b
+        int temp = b;                                                    // Store b in temporary variable
+        b = a % b;                                                       // Update b to remainder of a divided by b
+        a = temp;                                                        // Update a to previous value of b
         
-        cout << "gcd(" << a << ", " << b << ")" << endl;                // 66: Display next step
-    }                                                                    // 67: End of while loop
+        cout << "gcd(" << a << ", " << b << ")" << endl;                // Display next step
+    }                                                                    // End of while loop
     
-    return a;                                                            // 69: Return GCD (when b becomes 0, a contains GCD)
+    return a;                                                            // Return GCD (when b becomes 0, a contains GCD)
 }
 
 // Main function - demonstrates both recursive and iterative GCD calculation
