@@ -29,19 +29,19 @@
  * PREREQUISITE: Array must be sorted in ascending order
  */
 
-#include <iostream>                       // Line 32: Include input/output stream library for cout, cin
-using namespace std;                    // Line 33: Use standard namespace to avoid writing std:: prefix
+#include <iostream>                       // Include input/output stream library for cout, cin
+using namespace std;                    // Use standard namespace to avoid writing std:: prefix
 
 // Recursive Binary Search Function
 // Purpose: Searches for target element using divide-and-conquer approach
 // Parameters: arr - sorted array, left - start index, right - end index, target - element to find
 // Returns: index of target if found, -1 if not found
 // Time Complexity: O(log n), Space Complexity: O(log n) due to recursion stack
-int binarySearchRecursive(int arr[], int left, int right, int target) {     // Line 40: Function definition with array and search parameters
+int binarySearchRecursive(int arr[], int left, int right, int target) {     // Function definition with array and search parameters
     // Base case: element not found
-    if (left > right) {                                                     // Line 42: Check if search space is exhausted
-        return -1;                                                          // Line 43: Return -1 indicating element not found
-    }                                                                       // Line 44: End of base case
+    if (left > right) {                                                     // Check if search space is exhausted
+        return -1;                                                          // Return -1 indicating element not found
+    }                                                                       // End of base case
     
     // Calculate middle index to avoid overflow
     int mid = left + (right - left) / 2;                                   // Line 47: Calculate middle index safely
