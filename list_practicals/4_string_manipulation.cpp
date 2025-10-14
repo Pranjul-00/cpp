@@ -6,25 +6,25 @@
  *          including address display, concatenation, comparison, length calculation,
  *          case conversion, reversal, and string insertion.
  *
- * INPUT: User choice and corresponding string inputs
- * OUTPUT: Results of various string operations
+ * IMPLEMENTATION NOTES:
+ * - No external libraries included. Uses forward-declared C runtime functions.
  */
 
-#include <iostream>
-using namespace std;
+extern "C" int printf(const char*, ...);
+extern "C" int scanf(const char*, ...);
 
 // Function to display memory address of each character in a string
 // Purpose: Demonstrates how strings are stored in memory as character arrays
 // Parameter: str - pointer to the string whose addresses are to be displayed
-void showAddresses(char* str) {                                          // Function definition with char pointer parameter
-    cout << "\n=== CHARACTER MEMORY ADDRESSES ===" << endl;
-    cout << "Index\tChar\tAddress" << endl;
-    cout << "-----\t----\t-------" << endl;
+void showAddresses(char* str) {
+    printf("\n=== CHARACTER MEMORY ADDRESSES ===\n");
+    printf("Index\tChar\tAddress\n");
+    printf("-----\t----\t-------\n");
     
-    for (int i = 0; str[i] != '\0'; i++) {                               // Loop through each character until null terminator
-        cout << i << "\t'" << str[i] << "'\t" << (void*)&str[i] << endl;
-    }                                                                     // End of for loop
-    cout << "Note: Addresses are consecutive, showing contiguous memory storage." << endl;
+    for (int i = 0; str[i] != '\0'; i++) {
+        printf("%d\t'%c'\t%p\n", i, str[i], (void*)&str[i]);
+    }
+    printf("Note: Addresses are consecutive, showing contiguous memory storage.\n");
 }
 
 // Function to concatenate two strings manually (without strcat)
@@ -137,102 +137,104 @@ void insertString(char* mainStr, char* insertStr, int pos, char* result) {
 }
 
 // Main function - Menu-driven program for string operations
-int main() {                                                             // Main function definition
-    int choice;                                                           // Variable to store user menu choice
-    char str1[100], str2[100], result[200];                              // Character arrays for string storage
+int main() {
+    int choice;
+    char str1[100], str2[100], result[200];
     
-    do {                                                                  // Start of menu loop
-        cout << "\n=== STRING MANIPULATION MENU ===" << endl;
-        cout << "1. Show Memory Addresses of Characters" << endl;
-        cout << "2. Concatenate Two Strings" << endl;
-        cout << "3. Compare Two Strings" << endl;
-        cout << "4. Calculate String Length" << endl;
-        cout << "5. Convert to Uppercase" << endl;
-        cout << "6. Reverse String" << endl;
-        cout << "0. Exit" << endl;
-        cout << "\nEnter your choice: ";
-        cin >> choice;
-        cin.ignore(10000, '\n');
+    do {
+        printf("\n=== STRING MANIPULATION MENU ===\n");
+        printf("1. Show Memory Addresses of Characters\n");
+        printf("2. Concatenate Two Strings\n");
+        printf("3. Compare Two Strings\n");
+        printf("4. Calculate String Length\n");
+        printf("5. Convert to Uppercase\n");
+        printf("6. Reverse String\n");
+        printf("0. Exit\n");
+        printf("\nEnter your choice: ");
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input.\n");
+            return 1;
+        }
         
         switch (choice) {                                                 // Start switch statement for menu handling
-            case 1: {                                                     // Handle option 1 - show addresses
-                cout << "\nEnter a string: ";
-                cin.getline(str1, 100);
-                showAddresses(str1);                                      // Call function to display addresses
-                break;                                                    // Exit case 1
-            }                                                             // End of case 1
+            case 1: {
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
+                showAddresses(str1);
+                break;
+            }
             
-            case 2: {                                                     // Handle option 2 - concatenation
-                cout << "\nEnter first string: ";
-                cin.getline(str1, 100);
-                cout << "Enter second string: ";
-                cin.getline(str2, 100);
+            case 2: {
+                printf("\nEnter first string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
+                printf("Enter second string: ");
+                if (scanf(" %99[^\n]", str2) != 1) { return 1; }
                 
-                concatenateStrings(str1, str2, result);                  // Call concatenation function
-                cout << "\nConcatenated string: \"" << result << "\"" << endl;
-                cout << "First string: \"" << str1 << "\"" << endl;
-                cout << "Second string: \"" << str2 << "\"" << endl;
-                break;                                                    // Exit case 2
-            }                                                             // End of case 2
+                concatenateStrings(str1, str2, result);
+                printf("\nConcatenated string: \"%s\"\n", result);
+                printf("First string: \"%s\"\n", str1);
+                printf("Second string: \"%s\"\n", str2);
+                break;
+            }
             
-            case 3: {                                                     // Handle option 3 - comparison
-                cout << "\nEnter first string: ";
-                cin.getline(str1, 100);
-                cout << "Enter second string: ";
-                cin.getline(str2, 100);
+            case 3: {
+                printf("\nEnter first string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
+                printf("Enter second string: ");
+                if (scanf(" %99[^\n]", str2) != 1) { return 1; }
                 
-                int comparison = compareStrings(str1, str2);             // Call comparison function
-                cout << "\nComparison result: ";
+                int comparison = compareStrings(str1, str2);
+                printf("\nComparison result: ");
                 if (comparison == 0) {
-                    cout << "Strings are equal" << endl;
+                    printf("Strings are equal\n");
                 } else if (comparison < 0) {
-                    cout << "First string is lexicographically smaller" << endl;
+                    printf("First string is lexicographically smaller\n");
                 } else {
-                    cout << "First string is lexicographically larger" << endl;
+                    printf("First string is lexicographically larger\n");
                 }
-                break;                                                    // Exit case 3
-            }                                                             // End of case 3
+                break;
+            }
             
-            case 4: {                                                     // Handle option 4 - length calculation
-                cout << "\nEnter a string: ";
-                cin.getline(str1, 100);
+            case 4: {
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 
-                int length = calculateLength(str1);                      // Call length calculation function
-                cout << "\nString: \"" << str1 << "\"" << endl;
-                cout << "Length: " << length << " characters" << endl;
-                break;                                                    // Exit case 4
-            }                                                             // End of case 4
+                int length = calculateLength(str1);
+                printf("\nString: \"%s\"\n", str1);
+                printf("Length: %d characters\n", length);
+                break;
+            }
             
-            case 5: {                                                     // Handle option 5 - uppercase conversion
-                cout << "\nEnter a string: ";
-                cin.getline(str1, 100);
+            case 5: {
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 
-                cout << "\nOriginal string: \"" << str1 << "\"" << endl;
-                toUppercase(str1);                                        // Call uppercase conversion function
-                cout << "Uppercase string: \"" << str1 << "\"" << endl;
-                break;                                                    // Exit case 5
-            }                                                             // End of case 5
+                printf("\nOriginal string: \"%s\"\n", str1);
+                toUppercase(str1);
+                printf("Uppercase string: \"%s\"\n", str1);
+                break;
+            }
             
-            case 6: {                                                     // Handle option 6 - string reversal
-                cout << "\nEnter a string: ";
-                cin.getline(str1, 100);
+            case 6: {
+                printf("\nEnter a string: ");
+                if (scanf(" %99[^\n]", str1) != 1) { return 1; }
                 
-                cout << "\nOriginal string: \"" << str1 << "\"" << endl;
-                reverseString(str1);                                      // Call string reversal function
-                cout << "Reversed string: \"" << str1 << "\"" << endl;
-                break;                                                    // Exit case 6
-            }                                                             // End of case 6
+                printf("\nOriginal string: \"%s\"\n", str1);
+                reverseString(str1);
+                printf("Reversed string: \"%s\"\n", str1);
+                break;
+            }
             
-            case 0:                                                       // Handle option 0 - exit
-                cout << "\nExiting program. Thank you!" << endl;
-                break;                                                    // Exit case 0
+            case 0:
+                printf("\nExiting program. Thank you!\n");
+                break;
                 
-            default:                                                      // Handle invalid input
-                cout << "\nInvalid choice! Please enter a number between 0-6." << endl;
-                break;                                                    // Exit default case
-        }                                                                 // End of switch statement
+            default:
+                printf("\nInvalid choice! Please enter a number between 0-6.\n");
+                break;
+        }
         
-    } while (choice != 0);                                               // Continue loop until user chooses exit
+    } while (choice != 0);
     
-    return 0;                                                             // Return 0 to indicate successful execution
+    return 0;
 }
