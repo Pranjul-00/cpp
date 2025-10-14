@@ -10,9 +10,6 @@
 #include <fstream>
 using namespace std;
 
-extern "C" int fclose(FILE*);
-extern "C" int fputc(int, FILE*);
-extern "C" int fgetc(FILE*);
 
 int main() {
     string sourceFile, destFile;
