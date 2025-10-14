@@ -33,15 +33,15 @@ using namespace std;                    // Use standard namespace to avoid writi
 // Function to input matrix elements from user
 // Purpose: Reads matrix elements row by row from user input
 // Parameters: matrix - 2D array to store elements, rows - number of rows, cols - number of columns
-void inputMatrix(int matrix[10][10], int rows, int cols) {               //  Function definition for matrix input
-    cout << "Enter matrix elements (" << rows << "x" << cols << "):" << endl; // 38: Display input prompt with dimensions
+void inputMatrix(int matrix[10][10], int rows, int cols) {               // Function definition for matrix input
+    cout << "Enter matrix elements (" << rows << "x" << cols << "):" << endl; // Display input prompt with dimensions
     
-    for (int i = 0; i < rows; i++) {                                     // 40: Loop through each row
-        cout << "Row " << (i + 1) << ": ";                              // 41: Display current row number (1-based)
-        for (int j = 0; j < cols; j++) {                                 // 42: Loop through each column in current row
-            cin >> matrix[i][j];                                         // 43: Read element at position [i][j]
-        }                                                                // 44: End of column loop
-    }                                                                    // 45: End of row loop
+    for (int i = 0; i < rows; i++) {                                     // Loop through each row
+        cout << "Row " << (i + 1) << ": ";                              // Display current row number (1-based)
+        for (int j = 0; j < cols; j++) {                                 // Loop through each column in current row
+            cin >> matrix[i][j];                                         // Read element at position [i][j]
+        }                                                                // End of column loop
+    }                                                                    // End of row loop
 }
 
 // Function to display matrix in formatted output
