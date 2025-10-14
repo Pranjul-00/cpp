@@ -68,64 +68,64 @@ int gcdIterative(int a, int b) {                                         // Func
 }
 
 // Main function - demonstrates both recursive and iterative GCD calculation
-int main() {                                                             // 72: Main function definition
-    int num1, num2, choice;                                              // 73: Variables for two numbers and user choice
+int main() {                                                             // Main function definition
+    int num1, num2, choice;                                              // Variables for two numbers and user choice
     
-    cout << "=== GCD CALCULATOR ===" << endl;                            // 75: Display program header
-    cout << "Enter two positive integers:" << endl;                       // 76: Prompt for input
+    cout << "=== GCD CALCULATOR ===" << endl;                            // Display program header
+    cout << "Enter two positive integers:" << endl;                       // Prompt for input
     
     // Input two numbers
-    cout << "First number: ";                                            // 79: Prompt for first number
-    cin >> num1;                                                         // 80: Read first number
-    cout << "Second number: ";                                           // 81: Prompt for second number
-    cin >> num2;                                                         // 82: Read second number
+    cout << "First number: ";                                            // Prompt for first number
+    cin >> num1;                                                         // Read first number
+    cout << "Second number: ";                                           // Prompt for second number
+    cin >> num2;                                                         // Read second number
     
     // Validate input
-    if (num1 <= 0 || num2 <= 0) {                                       // 85: Check if both numbers are positive
-        cout << "Error: Please enter positive integers only." << endl;    // 86: Display error message
-        return 1;                                                        // 87: Return error code
-    }                                                                    // 88: End of input validation
+    if (num1 <= 0 || num2 <= 0) {                                       // Check if both numbers are positive
+        cout << "Error: Please enter positive integers only." << endl;    // Display error message
+        return 1;                                                        // Return error code
+    }                                                                    // End of input validation
     
     // Display input
-    cout << "\nCalculating GCD of " << num1 << " and " << num2 << endl;  // 91: Display numbers being processed
+    cout << "\nCalculating GCD of " << num1 << " and " << num2 << endl;  // Display numbers being processed
     
     // Menu for method selection
-    cout << "\n=== METHOD SELECTION ===" << endl;                        // 94: Display method selection header
-    cout << "1. Recursive Euclidean Algorithm" << endl;                  // 95: Display option 1
-    cout << "2. Iterative Euclidean Algorithm" << endl;                  // 96: Display option 2
-    cout << "Enter your choice (1 or 2): ";                             // 97: Prompt for method choice
-    cin >> choice;                                                       // 98: Read user choice
+    cout << "\n=== METHOD SELECTION ===" << endl;                        // Display method selection header
+    cout << "1. Recursive Euclidean Algorithm" << endl;                  // Display option 1
+    cout << "2. Iterative Euclidean Algorithm" << endl;                  // Display option 2
+    cout << "Enter your choice (1 or 2): ";                             // Prompt for method choice
+    cin >> choice;                                                       // Read user choice
     
-    int result;                                                          // 100: Variable to store GCD result
+    int result;                                                          // Variable to store GCD result
     
-    switch (choice) {                                                    // 102: Start switch statement for method selection
-        case 1: {                                                        // 103: Handle recursive method option
-            cout << "\n=== RECURSIVE METHOD ===" << endl;                // 104: Display recursive method header
-            cout << "Recursive GCD calculation steps:" << endl;           // 105: Display calculation steps header
-            result = gcdRecursive(num1, num2);                           // 106: Call recursive GCD function
-            break;                                                       // 107: Exit case 1
-        }                                                                // 108: End of case 1
+    switch (choice) {                                                    // Start switch statement for method selection
+        case 1: {                                                        // Handle recursive method option
+            cout << "\n=== RECURSIVE METHOD ===" << endl;                // Display recursive method header
+            cout << "Recursive GCD calculation steps:" << endl;           // Display calculation steps header
+            result = gcdRecursive(num1, num2);                           // Call recursive GCD function
+            break;                                                       // Exit case 1
+        }                                                                // End of case 1
         
-        case 2: {                                                        // 110: Handle iterative method option
-            cout << "\n=== ITERATIVE METHOD ===" << endl;                // 111: Display iterative method header
-            result = gcdIterative(num1, num2);                           // 112: Call iterative GCD function
-            break;                                                       // 113: Exit case 2
-        }                                                                // 114: End of case 2
+        case 2: {                                                        // Handle iterative method option
+            cout << "\n=== ITERATIVE METHOD ===" << endl;                // Display iterative method header
+            result = gcdIterative(num1, num2);                           // Call iterative GCD function
+            break;                                                       // Exit case 2
+        }                                                                // End of case 2
         
-        default:                                                         // 116: Handle invalid choice
-            cout << "Invalid choice! Using Recursive method by default." << endl; // 117: Display default message
-            result = gcdRecursive(num1, num2);                           // 118: Use recursive method as default
-            break;                                                       // 119: Exit default case
-    }                                                                    // 120: End of switch statement
+        default:                                                         // Handle invalid choice
+            cout << "Invalid choice! Using Recursive method by default." << endl; // Display default message
+            result = gcdRecursive(num1, num2);                           // Use recursive method as default
+            break;                                                       // Exit default case
+    }                                                                    // End of switch statement
     
     // Display final result
-    cout << "\n=== RESULT ===" << endl;                                  // 123: Display result section header
-    cout << "GCD of " << num1 << " and " << num2 << " is: " << result << endl; // 124: Display final GCD result
+    cout << "\n=== RESULT ===" << endl;                                  // Display result section header
+    cout << "GCD of " << num1 << " and " << num2 << " is: " << result << endl; // Display final GCD result
     
     // Additional information
-    cout << "\nMathematical verification:" << endl;                      // 127: Display verification header
-    cout << num1 << " = " << result << " × " << (num1 / result) << endl; // 128: Show first number factorization
-    cout << num2 << " = " << result << " × " << (num2 / result) << endl; // 129: Show second number factorization
+    cout << "\nMathematical verification:" << endl;                      // Display verification header
+    cout << num1 << " = " << result << " × " << (num1 / result) << endl; // Show first number factorization
+    cout << num2 << " = " << result << " × " << (num2 / result) << endl; // Show second number factorization
     
-    return 0;                                                            // 131: Return 0 to indicate successful execution
+    return 0;                                                            // Return 0 to indicate successful execution
 }
