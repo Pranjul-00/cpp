@@ -33,7 +33,7 @@ using namespace std;                    // Use standard namespace to avoid writi
 // Function to input matrix elements from user
 // Purpose: Reads matrix elements row by row from user input
 // Parameters: matrix - 2D array to store elements, rows - number of rows, cols - number of columns
-void inputMatrix(int matrix[10][10], int rows, int cols) {               // 37: Function definition for matrix input
+void inputMatrix(int matrix[10][10], int rows, int cols) {               //  Function definition for matrix input
     cout << "Enter matrix elements (" << rows << "x" << cols << "):" << endl; // 38: Display input prompt with dimensions
     
     for (int i = 0; i < rows; i++) {                                     // 40: Loop through each row
