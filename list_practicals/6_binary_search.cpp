@@ -90,70 +90,70 @@ int binarySearchIterative(int arr[], int n, int target) {               // Funct
 }
 
 // Main function - demonstrates both recursive and iterative binary search
-int main() {                                                             // 92: Main function definition
-    int n, target, choice;                                               // 93: Variables for array size, target element, and user choice
+int main() {                                                             // Main function definition
+    int n, target, choice;                                               // Variables for array size, target element, and user choice
     
-    cout << "=== BINARY SEARCH DEMONSTRATION ===" << endl;              // 95: Display program header
-    cout << "Note: Please ensure your array is sorted in ascending order." << endl; // 96: Display sorting requirement
+    cout << "=== BINARY SEARCH DEMONSTRATION ===" << endl;              // Display program header
+    cout << "Note: Please ensure your array is sorted in ascending order." << endl; // Display sorting requirement
     
     // Input array size
-    cout << "\nEnter the number of elements: ";                          // 99: Prompt for array size
-    cin >> n;                                                            // 100: Read array size
+    cout << "\nEnter the number of elements: ";                          // Prompt for array size
+    cin >> n;                                                            // Read array size
     
-    int arr[100];                                                        // 102: Declare array with maximum size 100
-    cout << "Enter " << n << " sorted elements: ";                       // 103: Prompt for array elements
-    for (int i = 0; i < n; i++) {                                       // 104: Loop to read array elements
-        cin >> arr[i];                                                  // 105: Read each element
-    }                                                                    // 106: End of input loop
+    int arr[100];                                                        // Declare array with maximum size 100
+    cout << "Enter " << n << " sorted elements: ";                       // Prompt for array elements
+    for (int i = 0; i < n; i++) {                                       // Loop to read array elements
+        cin >> arr[i];                                                  // Read each element
+    }                                                                    // End of input loop
     
     // Display the array
-    cout << "\nArray: ";                                                 // 109: Label for array display
-    for (int i = 0; i < n; i++) {                                       // 110: Loop to display array elements
-        cout << arr[i] << " ";                                          // 111: Display each element with space
-    }                                                                    // 112: End of display loop
-    cout << endl;                                                        // 113: New line after array display
+    cout << "\nArray: ";                                                 // Label for array display
+    for (int i = 0; i < n; i++) {                                       // Loop to display array elements
+        cout << arr[i] << " ";                                          // Display each element with space
+    }                                                                    // End of display loop
+    cout << endl;                                                        // New line after array display
     
     // Input target element
-    cout << "\nEnter element to search: ";                               // 116: Prompt for target element
-    cin >> target;                                                       // 117: Read target element
+    cout << "\nEnter element to search: ";                               // Prompt for target element
+    cin >> target;                                                       // Read target element
     
     // Menu for search method
-    cout << "\n=== BINARY SEARCH MENU ===" << endl;                     // 120: Display menu header
-    cout << "1. Recursive Binary Search" << endl;                        // 121: Display option 1
-    cout << "2. Iterative Binary Search" << endl;                        // 122: Display option 2
-    cout << "Enter your choice (1 or 2): ";                             // 123: Prompt for choice
-    cin >> choice;                                                       // 124: Read user choice
+    cout << "\n=== BINARY SEARCH MENU ===" << endl;                     // Display menu header
+    cout << "1. Recursive Binary Search" << endl;                        // Display option 1
+    cout << "2. Iterative Binary Search" << endl;                        // Display option 2
+    cout << "Enter your choice (1 or 2): ";                             // Prompt for choice
+    cin >> choice;                                                       // Read user choice
     
-    int result = -1;                                                     // 126: Initialize result variable
+    int result = -1;                                                     // Initialize result variable
     
-    switch (choice) {                                                    // 128: Start switch statement for method selection
-        case 1: {                                                        // 129: Handle recursive search option
-            cout << "\nUsing Recursive Binary Search..." << endl;        // 130: Display method being used
-            result = binarySearchRecursive(arr, 0, n - 1, target);      // 131: Call recursive search function
-            break;                                                       // 132: Exit case 1
-        }                                                                // 133: End of case 1
+    switch (choice) {                                                    // Start switch statement for method selection
+        case 1: {                                                        // Handle recursive search option
+            cout << "\nUsing Recursive Binary Search..." << endl;        // Display method being used
+            result = binarySearchRecursive(arr, 0, n - 1, target);      // Call recursive search function
+            break;                                                       // Exit case 1
+        }                                                                // End of case 1
         
-        case 2: {                                                        // 135: Handle iterative search option
-            cout << "\nUsing Iterative Binary Search..." << endl;        // 136: Display method being used
-            result = binarySearchIterative(arr, n, target);             // 137: Call iterative search function
-            break;                                                       // 138: Exit case 2
-        }                                                                // 139: End of case 2
+        case 2: {                                                        // Handle iterative search option
+            cout << "\nUsing Iterative Binary Search..." << endl;        // Display method being used
+            result = binarySearchIterative(arr, n, target);             // Call iterative search function
+            break;                                                       // Exit case 2
+        }                                                                // End of case 2
         
-        default:                                                         // 141: Handle invalid choice
-            cout << "Invalid choice! Using Recursive Binary Search by default." << endl; // 142: Display default message
-            result = binarySearchRecursive(arr, 0, n - 1, target);      // 143: Use recursive search as default
-            break;                                                       // 144: Exit default case
-    }                                                                    // 145: End of switch statement
+        default:                                                         // Handle invalid choice
+            cout << "Invalid choice! Using Recursive Binary Search by default." << endl; // Display default message
+            result = binarySearchRecursive(arr, 0, n - 1, target);      // Use recursive search as default
+            break;                                                       // Exit default case
+    }                                                                    // End of switch statement
     
     // Display result
-    cout << "\n=== SEARCH RESULT ===" << endl;                          // 148: Display result section header
-    if (result != -1) {                                                  // 149: Check if element was found
-        cout << "Element " << target << " found at index " << result << endl; // 150: Display found message with index
-        cout << "Position in array: " << (result + 1) << endl;          // 151: Display 1-based position
-    } else {                                                             // 152: Element not found case
-        cout << "Element " << target << " not found in the array." << endl; // 153: Display not found message
-        cout << "Make sure the array is sorted in ascending order." << endl; // 154: Display sorting reminder
-    }                                                                    // 155: End of result display
+    cout << "\n=== SEARCH RESULT ===" << endl;                          // Display result section header
+    if (result != -1) {                                                  // Check if element was found
+        cout << "Element " << target << " found at index " << result << endl; // Display found message with index
+        cout << "Position in array: " << (result + 1) << endl;          // Display 1-based position
+    } else {                                                             // Element not found case
+        cout << "Element " << target << " not found in the array." << endl; // Display not found message
+        cout << "Make sure the array is sorted in ascending order." << endl; // Display sorting reminder
+    }                                                                    // End of result display
     
-    return 0;                                                            // 157: Return 0 to indicate successful execution
+    return 0;                                                            // Return 0 to indicate successful execution
 }
