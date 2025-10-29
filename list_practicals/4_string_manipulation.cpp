@@ -1,21 +1,6 @@
-/*
- * PRACTICAL 4: COMPREHENSIVE STRING MANIPULATION MENU
- * ==================================================
- *
- * PURPOSE: Demonstrate various string operations through a menu-driven program
- *          including address display, concatenation, comparison, length calculation,
- *          case conversion, reversal, and string insertion.
- *
- * INPUT: User choice and corresponding string inputs
- * OUTPUT: Results of various string operations
- */
-
 #include <iostream>
 using namespace std;
 
-// Function to display memory address of each character in a string
-// Purpose: Demonstrates how strings are stored in memory as character arrays
-// Parameter: str - pointer to the string whose addresses are to be displayed
 void showAddresses(char* str) {
     cout << "\n=== CHARACTER MEMORY ADDRESSES ===" << endl;
     cout << "Index\tChar\tAddress" << endl;
@@ -27,116 +12,80 @@ void showAddresses(char* str) {
     cout << "Note: Addresses are consecutive, showing contiguous memory storage." << endl;
 }
 
-// Function to concatenate two strings manually (without strcat)
-// Purpose: Combines two strings into one result string
-// Parameters: str1 - first string, str2 - second string, result - output string
-void concatenateStrings(char* str1, char* str2, char* result) {          // Function definition with three char pointers
-    int i = 0, j = 0;                                                    // Initialize indices for source and destination
+void concatenateStrings(char* str1, char* str2, char* result) {
+    int i = 0, j = 0;
     
-    // Copy first string to result
-    while (str1[i] != '\0') {                                             // Loop through first string until null terminator
-        result[j++] = str1[i++];                                          // Copy character and increment both indices
-    }                                                                     // End of first string copy loop
+    while (str1[i] != '\0') {
+        result[j++] = str1[i++];
+    }
     
-    // Copy second string to result (starting where first ended)
-    i = 0;                                                                // Reset source index for second string
-    while (str2[i] != '\0') {                                             // Loop through second string until null terminator
-        result[j++] = str2[i++];                                          // Copy character and increment both indices
-    }                                                                     // End of second string copy loop
+    i = 0;
+    while (str2[i] != '\0') {
+        result[j++] = str2[i++];
+    }
     
-    result[j] = '\0';                                                     // Add null terminator to complete the string
+    result[j] = '\0';
 }
 
-// Function to compare two strings lexicographically (without strcmp)
-// Purpose: Compares strings character by character using ASCII values
-// Parameters: str1, str2 - strings to compare
-// Returns: -1 if str1 < str2, 0 if equal, 1 if str1 > str2
-int compareStrings(char* str1, char* str2) {                             // Function definition returning int
-    int i = 0;                                                            // Initialize character index
+int compareStrings(char* str1, char* str2) {
+    int i = 0;
     
-    // Compare characters until difference found or end reached
-    while (str1[i] != '\0' && str2[i] != '\0') {                         // Loop while both strings have characters
-        if (str1[i] < str2[i]) return -1;                                // Return -1 if str1 character is smaller
-        if (str1[i] > str2[i]) return 1;                                 // Return 1 if str1 character is larger
-        i++;                                                              // Move to next character
-    }                                                                     // End of comparison loop
+    while (str1[i] != '\0' && str2[i] != '\0') {
+        if (str1[i] < str2[i]) return -1;
+        if (str1[i] > str2[i]) return 1;
+        i++;
+    }
     
-    // Handle cases where strings have different lengths
-    if (str1[i] == '\0' && str2[i] == '\0') return 0;                    // Return 0 if both strings ended (equal)
-    return (str1[i] == '\0') ? -1 : 1;                                   // Return -1 if str1 shorter, 1 if str2 shorter
+    if (str1[i] == '\0' && str2[i] == '\0') return 0;
+    return (str1[i] == '\0') ? -1 : 1;
 }
 
-// Function to calculate string length using pointer arithmetic (without strlen)
-// Purpose: Demonstrates pointer arithmetic to find string length
-// Parameter: str - string whose length is to be calculated
-// Returns: length of the string (number of characters before null terminator)
-int calculateLength(char* str) {                                         // Function definition returning int
-    char* ptr = str;                                                      // Initialize pointer to start of string
+int calculateLength(char* str) {
+    char* ptr = str;
     
-    // Move pointer until null terminator is found
-    while (*ptr != '\0') {                                                // Loop until null terminator found
-        ptr++;                                                            // Increment pointer to next character
-    }                                                                     // End of length counting loop
+    while (*ptr != '\0') {
+        ptr++;
+    }
     
-    // Return difference between end and start pointers
-    return ptr - str;                                                     // Pointer arithmetic gives length
+    return ptr - str;
 }
 
-// Function to convert lowercase letters to uppercase (without toupper)
-// Purpose: Converts all lowercase letters in string to uppercase
-// Parameter: str - string to be converted (modified in-place)
-// Note: Uses ASCII value difference between 'a' and 'A' (32)
-void toUppercase(char* str) {                                            // Function definition with char pointer
-    for (int i = 0; str[i] != '\0'; i++) {                               // Loop through each character
-        // Check if character is lowercase letter
-        if (str[i] >= 'a' && str[i] <= 'z') {                            // Check if character is lowercase
-            str[i] = str[i] - 32;                                         // Convert to uppercase (subtract ASCII difference)
-        }                                                                 // End of lowercase check
-        // Non-lowercase characters remain unchanged
-    }                                                                     // End of conversion loop
+void toUppercase(char* str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] = str[i] - 32;
+        }
+    }
 }
 
-// Function to reverse a string in-place (without strrev)
-// Purpose: Reverses the order of characters in the string
-// Parameter: str - string to be reversed (modified in-place)
-// Algorithm: Swap characters from both ends moving towards center
-void reverseString(char* str) {                                          // Function definition with char pointer
-    int len = calculateLength(str);                                       // Get string length using our custom function
+void reverseString(char* str) {
+    int len = calculateLength(str);
     
-    // Swap characters from start and end, moving towards center
-    for (int i = 0; i < len / 2; i++) {                                  // Loop from start to middle of string
-        char temp = str[i];                                               // Store character from start in temporary variable
-        str[i] = str[len - 1 - i];                                       // Move character from end to start position
-        str[len - 1 - i] = temp;                                         // Move stored character to end position
-    }                                                                     // End of swapping loop
+    for (int i = 0; i < len / 2; i++) {
+        char temp = str[i];
+        str[i] = str[len - 1 - i];
+        str[len - 1 - i] = temp;
+    }
 }
 
-// Function to insert one string into another at specified position
-// Purpose: Inserts insertStr into mainStr at given position
-// Parameters: mainStr - original string, insertStr - string to insert,
-//            pos - insertion position, result - output string
 void insertString(char* mainStr, char* insertStr, int pos, char* result) {
     int i = 0, j = 0, k = 0;
     
-    // Step 1: Copy characters before insertion position
     while (i < pos && mainStr[i] != '\0') {
         result[k++] = mainStr[i++];
     }
     
-    // Step 2: Insert the new string at specified position
     while (insertStr[j] != '\0') {
         result[k++] = insertStr[j++];
     }
     
-    // Step 3: Copy remaining characters from original string
     while (mainStr[i] != '\0') {
         result[k++] = mainStr[i++];
     }
     
-    result[k] = '\0';  // Add null terminator
+    result[k] = '\0';
 }
 
-// Main function - Menu-driven program for string operations
 int main() {
     int choice;
     char str1[100], str2[100], result[200];
@@ -154,7 +103,7 @@ int main() {
         cin >> choice;
         cin.ignore(10000, '\n');
         
-        switch (choice) {                                                 // Start switch statement for menu handling
+        switch (choice) {
             case 1: {
                 cout << "\nEnter a string: ";
                 cin.getline(str1, 100);
