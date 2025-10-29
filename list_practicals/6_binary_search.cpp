@@ -1,72 +1,44 @@
-/*
- * PRACTICAL 6: BINARY SEARCH IMPLEMENTATION
- * ========================================
- *
- * PURPOSE: Implement binary search algorithm using both recursive and iterative approaches
- *          to search for an element in a sorted array efficiently.
- */
-
 #include <iostream>
 using namespace std;
 
-// Recursive Binary Search Function
-// Purpose: Searches for target element using divide-and-conquer approach
-// Parameters: arr - sorted array, left - start index, right - end index, target - element to find
-// Returns: index of target if found, -1 if not found
-// Time Complexity: O(log n), Space Complexity: O(log n) due to recursion stack
-int binarySearchRecursive(int arr[], int left, int right, int target) {     // Function definition with array and search parameters
-    // Base case: element not found
-    if (left > right) {                                                     // Check if search space is exhausted
-        return -1;                                                          // Return -1 indicating element not found
-    }                                                                       // End of base case
+int binarySearchRecursive(int arr[], int left, int right, int target) {
+    if (left > right) {
+        return -1;
+    }
     
-    // Calculate middle index to avoid overflow
-    int mid = left + (right - left) / 2;                                   // Calculate middle index safely
+    int mid = left + (right - left) / 2;
     
-    // Element found at middle
-    if (arr[mid] == target) {                                               // Check if middle element matches target
-        return mid;                                                         // Return index if element found
-    }                                                                       // End of found case
+    if (arr[mid] == target) {
+        return mid;
+    }
     
-    // Target is in left half
-    if (arr[mid] > target) {                                                // Check if target is smaller than middle element
-        return binarySearchRecursive(arr, left, mid - 1, target);          // Recursively search left half
-    }                                                                       // End of left half case
+    if (arr[mid] > target) {
+        return binarySearchRecursive(arr, left, mid - 1, target);
+    }
     
-    // Target is in right half
-    return binarySearchRecursive(arr, mid + 1, right, target);             // Recursively search right half
+    return binarySearchRecursive(arr, mid + 1, right, target);
 }
 
-// Binary search implementation using iteration (loop-based approach)
-// Parameters: arr - sorted array, n - array size, target - element to find
-// Returns: index of target element if found, -1 if not found
-int binarySearchIterative(int arr[], int n, int target) {               // Function definition for iterative binary search
-    int left = 0, right = n - 1;                                        // Initialize search boundaries (start and end)
+int binarySearchIterative(int arr[], int n, int target) {
+    int left = 0, right = n - 1;
     
-    // Continue searching while search space exists
-    while (left <= right) {                                              // Loop while valid search space remains
-        // Calculate middle index
-        int mid = left + (right - left) / 2;                            // Calculate middle index to avoid overflow
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
         
-        // Element found
-        if (arr[mid] == target) {                                        // Check if middle element matches target
-            return mid;                                                  // Return index if element found
-        }                                                                // End of found case
+        if (arr[mid] == target) {
+            return mid;
+        }
         
-        // Target is in left half
-        if (arr[mid] > target) {                                         // Check if target is smaller than middle element
-            right = mid - 1;                                            // Update right boundary to search left half
-        }                                                                // End of left half case
-        // Target is in right half
-        else {                                                           // Target is larger than middle element
-            left = mid + 1;                                             // Update left boundary to search right half
-        }                                                                // End of right half case
-    }                                                                    // End of search loop
+        if (arr[mid] > target) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
     
-    return -1;                                                           // Return -1 if element not found
+    return -1;
 }
 
-// Main function - demonstrates both recursive and iterative binary search
 int main() {
     int n, target, choice;
 
