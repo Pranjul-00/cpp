@@ -1,14 +1,3 @@
-/*
- * PRACTICAL 2: REMOVE DUPLICATES FROM ARRAY
- * =========================================
- *
- * PURPOSE: Remove duplicate elements from an array and display the unique elements
- *          in the order they first appear in the original array.
- *
- * INPUT: Array size and elements
- * OUTPUT: Array with duplicates removed
- */
-
 #include <iostream>
 using namespace std;
 

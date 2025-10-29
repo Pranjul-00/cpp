@@ -1,15 +1,6 @@
-/*
- * PRACTICAL 9: FILE COPY WITH WHITESPACE REMOVAL
- * ==============================================
- *
- * PURPOSE: Copy content from one file to another while removing all whitespace
- *          characters (spaces, tabs, newlines) from the source file.
- */
-
 #include <iostream>
 #include <fstream>
 using namespace std;
-
 
 int main() {
     string sourceFile, destFile;

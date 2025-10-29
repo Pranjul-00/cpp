@@ -1,18 +1,3 @@
-/*
- * PRACTICAL 3: ALPHABET FREQUENCY COUNTER
- * ======================================
- *
- * PURPOSE: Count the frequency of each alphabet character from command line arguments
- *          and display the results in a tabular format.
- *
- * INPUT: Text strings as command line arguments
- * OUTPUT: Frequency table of alphabetic characters
- *
- * USAGE: program.exe "Hello World" "Programming"
- *
- * CHARACTER MAPPING: 'A'/'a' → index 0, 'B'/'b' → index 1, ..., 'Z'/'z' → index 25
- */
-
 #include <iostream>
 using namespace std;
 

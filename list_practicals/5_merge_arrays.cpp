@@ -1,11 +1,3 @@
-/*
- * PRACTICAL 5: MERGE TWO SORTED ARRAYS
- * ===================================
- *
- * PURPOSE: Merge two sorted arrays into a single sorted array while maintaining
- *          the sorted order without using additional sorting algorithms.
- */
-
 #include <iostream>
 using namespace std;
 
