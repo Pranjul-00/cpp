@@ -1,17 +1,6 @@
-/*
- * PRACTICAL 8: MATRIX OPERATIONS
- * ==============================
- *
- * PURPOSE: Perform basic matrix operations including addition, multiplication,
- *          and transpose on user-defined matrices.
- */
-
 #include <iostream>
 using namespace std;
 
-// Function to input matrix elements from user
-// Purpose: Reads matrix elements row by row from user input
-// Parameters: matrix - 2D array to store elements, rows - number of rows, cols - number of columns
 void inputMatrix(int matrix[][10], int rows, int cols, const char* name) {
     cout << "\nEnter elements for " << name << " (" << rows << "x" << cols << "):" << endl;
     for (int i = 0; i < rows; i++) {
@@ -22,8 +11,6 @@ void inputMatrix(int matrix[][10], int rows, int cols, const char* name) {
     }
 }
 
-// Function to display matrix in formatted output
-// Parameters: matrix - 2D array to display, rows - number of rows, cols - number of columns
 void displayMatrix(int matrix[][10], int rows, int cols, const char* name) {
     cout << "\n" << name << " Matrix (" << rows << "x" << cols << "):" << endl;
     for (int i = 0; i < rows; i++) {
@@ -36,10 +23,6 @@ void displayMatrix(int matrix[][10], int rows, int cols, const char* name) {
     cout << endl;
 }
 
-// Function to add two matrices
-// Purpose: Performs element-wise addition of two matrices
-// Parameters: mat1, mat2 - input matrices, result - output matrix, rows, cols - dimensions
-// Prerequisite: Both matrices must have same dimensions
 void addMatrices(int a[][10], int b[][10], int result[][10], int rows, int cols) {
     cout << "\nPerforming Matrix Addition..." << endl;
     for (int i = 0; i < rows; i++) {
@@ -50,11 +33,6 @@ void addMatrices(int a[][10], int b[][10], int result[][10], int rows, int cols)
     }
 }
 
-// Function to multiply two matrices using dot product
-// Parameters: mat1, mat2 - input matrices, result - output matrix
-//            r1, c1 - dimensions of first matrix, r2, c2 - dimensions of second matrix
-// Returns: true if multiplication possible, false otherwise
-// Condition: Columns of first matrix must equal rows of second matrix
 void multiplyMatrices(int a[][10], int b[][10], int result[][10], int r1, int c1, int c2) {
     cout << "\nPerforming Matrix Multiplication..." << endl;
     
@@ -72,8 +50,6 @@ void multiplyMatrices(int a[][10], int b[][10], int result[][10], int r1, int c1
     }
 }
 
-// Function to transpose a matrix (convert rows to columns)
-// Parameters: matrix - input matrix, result - transposed matrix, rows, cols - original dimensions
 void transposeMatrix(int matrix[][10], int result[][10], int rows, int cols) {
     cout << "\nPerforming Matrix Transpose..." << endl;
     cout << "Original: " << rows << "x" << cols << " -> Transposed: " << cols << "x" << rows << endl;
@@ -85,7 +61,6 @@ void transposeMatrix(int matrix[][10], int result[][10], int rows, int cols) {
     }
 }
 
-// Main function - Menu-driven matrix operations program
 int main() {
     int choice;
     int matrix1[10][10], matrix2[10][10], result[10][10];

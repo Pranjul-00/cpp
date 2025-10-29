@@ -1,53 +1,31 @@
-/*
- * PRACTICAL 7: GREATEST COMMON DIVISOR (GCD) CALCULATION
- * =====================================================
- *
- * PURPOSE: Calculate the Greatest Common Divisor (GCD) of two numbers using both
- *          recursive and iterative implementations of Euclidean algorithm.
- */
-
 #include <iostream>
 using namespace std;
 
-// Recursive implementation of Euclidean Algorithm for GCD
-// Purpose: Finds GCD using the mathematical property: gcd(a,b) = gcd(b, a%b)
-// Parameters: a, b - two positive integers
-// Returns: Greatest Common Divisor of a and b
-// Base case: when b becomes 0, a is the GCD
-int gcdRecursive(int a, int b) {                                         // Function definition for recursive GCD
-    // Base case: if b is 0, then GCD is a
-    if (b == 0) {                                                        // Check if second number is zero (base case)
-        return a;                                                        // Return first number as GCD
-    }                                                                    // End of base case
+int gcdRecursive(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
     
-    // Recursive case: gcd(a, b) = gcd(b, a % b)
     cout << "gcd(" << a << ", " << b << ") = gcd(" << b << ", " << (a % b) << ")" << endl;
-    return gcdRecursive(b, a % b);                                       // Recursive call with b and remainder
+    return gcdRecursive(b, a % b);
 }
 
-// Iterative implementation of Euclidean Algorithm for GCD
-// Purpose: Finds GCD using loops instead of recursion
-// Parameters: a, b - two positive integers
-// Returns: Greatest Common Divisor of a and b
-// More memory efficient than recursive version
-int gcdIterative(int a, int b) {                                         // Function definition for iterative GCD
+int gcdIterative(int a, int b) {
     cout << "\nIterative GCD calculation steps:" << endl;
     
-    // Continue until b becomes 0
-    while (b != 0) {                                                     // Loop until second number becomes zero
+    while (b != 0) {
         cout << "gcd(" << a << ", " << b << ") -> ";
         
-        int temp = b;                                                    // Store b in temporary variable
-        b = a % b;                                                       // Update b to remainder of a divided by b
-        a = temp;                                                        // Update a to previous value of b
+        int temp = b;
+        b = a % b;
+        a = temp;
         
         cout << "gcd(" << a << ", " << b << ")" << endl;
-    }                                                                    // End of while loop
+    }
     
-    return a;                                                            // Return GCD (when b becomes 0, a contains GCD)
+    return a;
 }
 
-// Main function - demonstrates both recursive and iterative GCD calculation
 int main() {
     int num1, num2, choice;
     
