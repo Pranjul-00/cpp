@@ -69,8 +69,28 @@ int main() {
         
         students[i].rollNo = getValidInt("Enter Roll Number: ", 1, 1000000);
 
-        cout << "Enter Name: ";
-        cin >> students[i].name;
+        while (true) {
+            cout << "Enter Name: ";
+            cin >> students[i].name;
+
+            bool hasError = false; 
+
+            for (int k = 0; students[i].name[k] != '\0'; k++) {
+                
+                char c = students[i].name[k];
+
+                if ( ! ( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ) ) {
+                    hasError = true;
+                    break; 
+                }
+            }
+
+            if (hasError) {
+                cout << "  [Error] Name can only contain letters (a-z, A-Z).\n";
+            } else {
+                break;
+            }
+        }
         
         students[i].total = 0;
         for (int j = 0; j < 5; ++j) {
