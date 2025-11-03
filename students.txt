@@ -1,1 +1,4 @@
-
+RollNo	Name	Mark1	Mark2	Mark3	Mark4	Mark5	Total	Average
+162502	Aditya	78	89	93	86	90	436	87.2
+162529	Ovesh	98	96	78	82	90	444	88.8
+162540	Pranjul	85	83	90	100	90	448	89.6
