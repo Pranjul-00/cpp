@@ -11,7 +11,7 @@ struct Student{
     int Marks[5];
 };
 
-Student Records[20];
+Student Records[100];
 int studentCount = 0;
 
 void AddStudent();
@@ -71,6 +71,11 @@ int main() {
 
 void AddStudent(){
 
+    if (studentCount >= 100) {
+        cout << "Database is full! Cannot add more students." << endl;
+        return;
+    }
+
     cout << "--- Add New Student ---" << endl;
     cout << "Enter Student Roll Number : ";
     cin >> Records[studentCount].Roll_No;
@@ -109,12 +114,14 @@ void AddStudent(){
     studentCount++;
 
     cout << "Student Added Successfully." << endl;
+    cout << "-----------------------------------" << endl;
 }
 
 void DisplayAllRecords(){
 
     if (studentCount==0){
         cout << "No Records Found." << endl;
+        cout << "-----------------------------------" << endl;
         return;
     }
 
@@ -132,6 +139,7 @@ void DisplayAllRecords(){
 
         cout << "Percentage : " << Records[i].Percentage << "%" << endl;
         cout << "Grade : " << Records[i].Grade << endl;
+        cout << "-----------------------------------" << endl;
     }
 }
 
@@ -139,6 +147,7 @@ void SearchRecords(){
 
     if (studentCount==0){
         cout << "No Records Found." << endl;
+        cout << "-----------------------------------" << endl;
         return;
     }
 
@@ -180,6 +189,7 @@ void SearchRecords(){
 
                     cout << "Percentage : " << Records[i].Percentage << "%" << endl;
                     cout << "Grade : " << Records[i].Grade << endl;
+                    cout << "-----------------------------------" << endl;
 
                     found = true;
                     break;
@@ -188,6 +198,7 @@ void SearchRecords(){
 
             if (found == false) {
                     cout << "No record found for Roll Number " << searchRoll << endl;
+                    cout << "-----------------------------------" << endl;
                 }
 
         }
@@ -216,6 +227,7 @@ void SearchRecords(){
                     cout << "Percentage : " << Records[i].Percentage <<
                     "%" << endl;
                     cout << "Grade : " << Records[i].Grade << endl;
+                    cout << "-----------------------------------" << endl;
 
                     found = true;
                     break;
@@ -224,6 +236,7 @@ void SearchRecords(){
 
             if (found == false) {
                     cout << "No record found for " << searchName << endl;
+                    cout << "-----------------------------------" << endl;
                 }
 
         }
@@ -233,6 +246,7 @@ void ModifyRecords(){
 
     if (studentCount==0){
         cout << "No Records Found to modify." << endl;
+        cout << "-----------------------------------" << endl;
         return;
     }
 
@@ -285,6 +299,7 @@ void ModifyRecords(){
             }
 
             cout << "Updated the records successfully."<< endl;
+            cout << "-----------------------------------" << endl;
 
             found = true;
             break;
@@ -293,6 +308,7 @@ void ModifyRecords(){
     
     if (found == false){
         cout << "There is no Student with Roll Number - " << modifyRoll << " in the database.";
+        cout << "-----------------------------------" << endl;
     }
 }
 
@@ -327,7 +343,7 @@ void loadDataFromFile(){
     ifstream inFile("studentReportCardData.txt");
 
     if (!inFile) {
-        cout << "No file exists." << endl;
+        return;
     }
 
     inFile >> studentCount;
