@@ -322,3 +322,31 @@ void saveDataToFile(){
     outFile.close();
 }
 
+void loadDataFromFile(){
+
+    ifstream inFile("studentReportCardData.txt");
+
+    if (!inFile) {
+        cout << "No file exists." << endl;
+    }
+
+    inFile >> studentCount;
+    inFile.ignore();
+    
+    for (int i=0; i < studentCount; i++) {
+
+        inFile >> Records[i].Roll_No;
+        inFile.ignore();
+
+        inFile.getline(Records[i].Name,100);
+
+        for (int j=0; j <=4; j++){
+            inFile >> Records[i].Marks[j];
+        }
+
+        inFile >> Records[i].Percentage;
+        inFile >> Records[i].Grade;
+    }
+    
+    inFile.close();
+}
