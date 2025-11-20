@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <cstdlib>
 using namespace std;
 
 struct Student{
@@ -27,6 +28,9 @@ int main() {
 
     int choice;
     do{
+
+        system("cls");     //for a clean terminal :)
+
         cout << "--Welcome to Student Records--"<< endl;
         cout << "1.Add a Student" << endl;
         cout << "2.Display Records" << endl;
@@ -115,6 +119,8 @@ void AddStudent(){
 
     cout << "Student Added Successfully." << endl;
     cout << "-----------------------------------" << endl;
+
+    system("pause");   // lets the user read the data, before clearing the termial lol lol lol
 }
 
 void DisplayAllRecords(){
@@ -140,7 +146,9 @@ void DisplayAllRecords(){
         cout << "Percentage : " << Records[i].Percentage << "%" << endl;
         cout << "Grade : " << Records[i].Grade << endl;
         cout << "-----------------------------------" << endl;
+
     }
+    system("pause");   // lets the user read the data, before clearing the termial lol lol lol
 }
 
 void SearchRecords(){
@@ -240,6 +248,8 @@ void SearchRecords(){
                 }
 
         }
+
+        system("pause");   // lets the user read the data, before clearing the termial lol lol lol
 }
 
 void ModifyRecords(){
@@ -310,6 +320,8 @@ void ModifyRecords(){
         cout << "There is no Student with Roll Number - " << modifyRoll << " in the database.";
         cout << "-----------------------------------" << endl;
     }
+
+    system("pause");
 }
 
 void saveDataToFile(){
