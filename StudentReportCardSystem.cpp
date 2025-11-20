@@ -355,6 +355,7 @@ void loadDataFromFile(){
     ifstream inFile("studentReportCardData.txt");
 
     if (!inFile) {
+        cout << "No File Found.";
         return;
     }
 
