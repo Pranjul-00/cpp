@@ -23,6 +23,8 @@ void loadDataFromFile();
 
 int main() {
 
+    loadDataFromFile();
+
     int choice;
     do{
         cout << "--Welcome to Student Records--"<< endl;
@@ -293,3 +295,30 @@ void ModifyRecords(){
         cout << "There is no Student with Roll Number - " << modifyRoll << " in the database.";
     }
 }
+
+void saveDataToFile(){
+
+    ofstream outFile("studentReportCardData.txt");
+
+    if (!outFile){
+        cout << "Error Saving File" << endl;
+        return;
+    }
+
+    outFile << studentCount << endl;
+
+    for (int i=0; i < studentCount; i++){
+        outFile << Records[i].Roll_No << endl;
+        outFile << Records[i].Name << endl; 
+
+        for (int j=0; j <=4; j++){
+            outFile << Records[i].Marks[j] << endl;
+        }
+
+        outFile << Records[i].Percentage << endl; 
+        outFile << Records[i].Grade << endl; 
+    }
+
+    outFile.close();
+}
+
