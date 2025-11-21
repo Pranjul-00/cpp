@@ -310,14 +310,20 @@ void LoadDataFromFile(){
     }
 
     inFile >> roomCount;
+    inFile.ignore();
 
     for (int i=0; i < roomCount; i++) {
 
         inFile >> Records[i].RoomNum;
-        inFile >> Records[i].guestName;
-        inFile >> Records[i].status;
-        inFile >> Records[i].roomType;
+        inFile.ignore();
+
+        inFile.getline(Records[i].guestName,100);
+        inFile.getline(Records[i].roomType,100);
+        
         inFile >> Records[i].RentPerNight;
+        inFile >> Records[i].status;
+
+        inFile.ignore();
     }
 
     inFile.close();
