@@ -107,6 +107,7 @@ void createAccount(){
 void Deposit(){
     if (totalAccounts == 0){
         cout << "No Accounts in the database." << endl;
+        system("pause");
         return;
     }
 
@@ -115,6 +116,8 @@ void Deposit(){
 
     cout << "Enter Account Number : ";
     cin >> searchAcc;
+
+    bool found = false;
 
     for (int i=0; i < totalAccounts; i++){
         if (Records[i].accNum == searchAcc){
@@ -133,6 +136,15 @@ void Deposit(){
             cout << "     Updated the Account Balance." << endl;
             cout << "New Account Balance : " << Records[i].Balance;
             cout << "------------------------------------------" << endl;
+
+            found = true;
+            break;
         }
     }
+
+    if (!found) {
+        cout << "Error: Account Number " << searchAcc << " not found." << endl;
+    }
+
+    system("pause");
 }
