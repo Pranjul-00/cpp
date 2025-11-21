@@ -269,9 +269,11 @@ void roomsDetail(){
 
         cout << "Room Number : " << Records[i].RoomNum << endl;
         cout << "Status (0 -> Vacant ; 1 -> Occupied) : " << Records[i].status << endl;
-        cout << "Room Type : " << Records[i].RoomNum << endl;
-        cout << "Room Rent : " << Records[i].RoomNum << endl;
+        cout << "Room Type : " << Records[i].roomType << endl;
+        cout << "Room Rent : " << Records[i].RentPerNight << endl;
         cout << "------------------------------" << endl;
-        
+
     }
+
+    system("pause");
 }
