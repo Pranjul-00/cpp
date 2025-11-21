@@ -16,6 +16,7 @@ int roomCount = 0;
 Room Records[100];
 
 void InitializeRooms();
+void copyString();
 void checkIN();
 void checkOUT();
 void AvailableRooms();
@@ -81,6 +82,15 @@ int main(){
     return 0;
 }
 
+void copyString(char destination[], const char source[]) {
+    int i = 0;
+    while (source[i] != '\0') {
+        destination[i] = source[i];
+        i++;
+    }
+    destination[i] = '\0';
+}
+
 void InitializeRooms(){
 
     if (roomCount > 0) {
@@ -92,8 +102,8 @@ void InitializeRooms(){
         Records[i].RentPerNight = 100.00;
         Records[i].status = 0;
         
-        strcpy(Records[i].guestName, "VACANT");
-        strcpy(Records[i].roomType, "AC"); 
+        copyString(Records[i].guestName, "VACANT");
+        copyString(Records[i].roomType, "AC"); 
     }
 
     roomCount = 10;
