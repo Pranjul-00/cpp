@@ -100,21 +100,50 @@ void InitializeRooms(){
 }
 
 void checkIN(){
+
     int desiredRoom;
 
+    cout << "------------------------------" << endl;
+    cout << "Here are the details of available rooms." << endl;
+    cout << "------------------------------" << endl;
+
     for (int i=0; i < roomCount; i++){
+
         if (Records[i].status == 0){
-            cout << "------------------------------" << endl;
-            cout << "Here are the details of available rooms." << endl;
-            cout << "------------------------------" << endl;
             cout << "Room Number : " << Records[i].RoomNum << endl; 
             cout << "Room Type : " << Records[i].roomType<< endl; 
             cout << "Room Rent : " << Records[i].RentPerNight << endl; 
             cout << "------------------------------" << endl;
-            cout << "Enter Room Number of the room you\n'd like to book " << endl;
-            cin >> desiredRoom;
-
-            
         }
     }
+
+    cout << "Enter Room Number of the room you\n'd like to book " << endl;
+    cin >> desiredRoom;
+
+    for (int i=0; i < roomCount; i++){
+
+        if (Records[i].RoomNum == desiredRoom && Records[i].status == 0){
+
+            cout << "Enter Guest Name : ";
+            cin.ignore();
+            cin.getline(Records[i].guestName, 100);
+            
+            Records[i].status = 1;
+
+            cout << "Success! Room " << desiredRoom << " booked for " << Records[i].guestName << endl;
+
+            system("pause");
+            return;
+
+        }
+
+        else if (Records[i].RoomNum == desiredRoom && Records[i].status == 1){
+            cout << "Sorry! Room No. " << desiredRoom << " is occupied" << endl;
+            return;
+        }
+    }
+
+    cout << "Error: Room Number " << desiredRoom << " does not exist." << endl;
+    system("pause");
+    
 }
