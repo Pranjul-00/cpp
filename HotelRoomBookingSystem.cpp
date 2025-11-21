@@ -20,7 +20,7 @@ void copyString();
 int compareString();
 void checkIN();
 void checkOUT();
-void AvailableRooms();
+void roomsDetail();
 void SearchGuest();
 void saveDataToFile();
 void LoadDataFromFile();
@@ -42,7 +42,7 @@ int main(){
         cout << "-----Hotel Room Booking-------" << endl;
         cout << "1.Check In" << endl;
         cout << "2.Check Out" << endl;
-        cout << "3.Show Available Rooms" << endl;
+        cout << "3.Show Details of Rooms." << endl;
         cout << "4.Search Guest" << endl;
         cout << "0.Exit" << endl;
         cout << "------------------------------" << endl;
@@ -64,7 +64,7 @@ int main(){
                 checkOUT();
                 break;
             case 3:
-                AvailableRooms();
+                roomsDetail();
                 break;
             case 4:
                 SearchGuest();
@@ -256,5 +256,22 @@ void SearchGuest(){
     if (guestFound == false) {
         cout << "Cannot find the guest in the records." << endl;
         system("pause");
+    }
+}
+
+void roomsDetail(){
+
+    cout << "------------------------------" << endl;
+    cout << "Here are details of all the rooms" << endl;
+    cout << "------------------------------" << endl;
+
+    for (int i=0; i < roomCount; i++) {
+
+        cout << "Room Number : " << Records[i].RoomNum << endl;
+        cout << "Status (0 -> Vacant ; 1 -> Occupied) : " << Records[i].status << endl;
+        cout << "Room Type : " << Records[i].RoomNum << endl;
+        cout << "Room Rent : " << Records[i].RoomNum << endl;
+        cout << "------------------------------" << endl;
+        
     }
 }
