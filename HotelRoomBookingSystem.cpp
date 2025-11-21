@@ -120,30 +120,35 @@ void checkIN(){
     cout << "Enter Room Number of the room you\n'd like to book " << endl;
     cin >> desiredRoom;
 
+    bool roomFound = false;
+
     for (int i=0; i < roomCount; i++){
 
-        if (Records[i].RoomNum == desiredRoom && Records[i].status == 0){
+        if (Records[i].RoomNum == desiredRoom){
 
-            cout << "Enter Guest Name : ";
+            roomFound = true;
+
+            if (Records[i].status == 1){
+
+                cout << "Sorry! Room no. " << desiredRoom << " is already occupied." << endl;
+                return;
+
+            }
+
+            cout << "Enter Guest name : ";
             cin.ignore();
-            cin.getline(Records[i].guestName, 100);
-            
+            cin.getline(Records[i].guestName,100);
+
             Records[i].status = 1;
 
             cout << "Success! Room " << desiredRoom << " booked for " << Records[i].guestName << endl;
-
             system("pause");
-            return;
-
-        }
-
-        else if (Records[i].RoomNum == desiredRoom && Records[i].status == 1){
-            cout << "Sorry! Room No. " << desiredRoom << " is occupied" << endl;
             return;
         }
     }
 
-    cout << "Error: Room Number " << desiredRoom << " does not exist." << endl;
-    system("pause");
-    
+    if (roomCount == false) {
+        cout << "Error: Room Number " << desiredRoom << " does not exist." << endl;
+        system("pause");
+    }
 }
