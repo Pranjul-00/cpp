@@ -80,8 +80,7 @@ void createAccount(){
     }
 
     cout << "---------- Add New Account -------------" << endl;
-    cout << "------------------------------------------" << endl;
-
+    
     cout << "Enter Account Number : ";
     cin >> Records[totalAccounts].accNum;
     cin.ignore();
@@ -89,11 +88,16 @@ void createAccount(){
     cout << "Enter Account Holder name : ";
     cin.getline(Records[totalAccounts].Name,100);
 
-    cout << "Enter Account type : ";
+    cout << "Enter Account type (Savings/Current): ";
     cin >> Records[totalAccounts].accType;
 
-    cout << "Enter opening balance : ";
-    cin >> Records[totalAccounts].Balance;
+    do {
+        cout << "Enter opening balance (Min 500): ";
+        cin >> Records[totalAccounts].Balance;
+        if(Records[totalAccounts].Balance < 500) {
+            cout << "Error: Opening balance must be at least 500." << endl;
+        }
+    } while (Records[totalAccounts].Balance < 500);
 
     cout << "------------------------------------------" << endl;
     cout << "        Account added successfully." << endl;
@@ -270,7 +274,10 @@ void loadDataFromFile(){
 
     for (int i=0; i < totalAccounts; i++){
         inFile >> Records[i].accNum;
-        inFile >> Records[i].Name;
+
+        inFile.ignore();
+        inFile.getline(Records[i].Name,100);
+
         inFile >> Records[i].accType;
         inFile >> Records[i].Balance;
     }
