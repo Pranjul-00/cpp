@@ -15,6 +15,7 @@ struct Room{
 int roomCount = 0;
 Room Records[100];
 
+void InitializeRooms();
 void checkIN();
 void checkOUT();
 void AvailableRooms();
@@ -29,6 +30,9 @@ int main(){
     int choice;
 
     do{
+
+        system("cls");
+
         cout << "-----Hotel Room Booking-------" << endl;
         cout << "1.Check In" << endl;
         cout << "2.Check Out" << endl;
@@ -66,8 +70,21 @@ int main(){
             default:
                 cout << "Invalid choice. Please try again." << endl;
                 break;
-                
+
         }
     }
     while(choice != 0);
+    return 0;
+}
+
+void checkIN(){
+
+    if (roomCount >= 99){
+    cout << "All rooms are occupied. No rooms available." << endl;
+    return;
+    }
+
+    cout << "----Guest Check In------" << endl;
+    cout << "Enter Room Number : ";
+    cin
 }
