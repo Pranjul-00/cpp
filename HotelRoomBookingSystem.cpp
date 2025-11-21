@@ -277,3 +277,48 @@ void roomsDetail(){
 
     system("pause");
 }
+
+void saveDataToFile(){
+
+    ofstream outFile("Hotel_Records.txt");
+
+    if (!outFile) {
+        cout << "Error Saving data to file." << endl;
+        return;
+    }
+
+    outFile << roomCount << endl;
+
+    for (int i=0; i < roomCount; i++) {
+
+        outFile << Records[i].RoomNum << endl;
+        outFile << Records[i].guestName << endl;
+        outFile << Records[i].status << endl;
+        outFile << Records[i].roomType << endl;
+        outFile << Records[i].RentPerNight << endl;
+    }
+
+    outFile.close();
+}
+
+void LoadDataFromFile(){
+
+    ifstream inFile("Hotel_Records.txt");
+
+    if (!inFile) {
+        return;
+    }
+
+    inFile >> roomCount;
+
+    for (int i=0; i < roomCount; i++) {
+
+        inFile >> Records[i].RoomNum;
+        inFile >> Records[i].guestName;
+        inFile >> Records[i].status;
+        inFile >> Records[i].roomType;
+        inFile >> Records[i].RentPerNight;
+    }
+
+    inFile.close();
+}
