@@ -127,6 +127,11 @@ void Deposit(){
             cin >> DepositedAmt;
 
             Records[i].Balance = Records[i].Balance + DepositedAmt;
+
+            cout << "------------------------------------------" << endl;
+            cout << "     Updated the Account Balance." << endl;
+            cout << "New Account Balance : " << Records[i].Balance;
+            cout << "------------------------------------------" << endl;
         }
     }
 }
