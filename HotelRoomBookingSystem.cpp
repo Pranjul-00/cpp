@@ -17,6 +17,7 @@ Room Records[100];
 
 void InitializeRooms();
 void copyString();
+int compareString();
 void checkIN();
 void checkOUT();
 void AvailableRooms();
@@ -89,6 +90,17 @@ void copyString(char destination[], const char source[]) {
         i++;
     }
     destination[i] = '\0';
+}
+
+int compareString(const char str1[], const char str2[]){
+    int i = 0;
+    while (str1[i] != '\0' || str2[i] != '\0') {
+        if (str1[i] != str2[i]) {
+            return str1[i] - str[2];
+        }
+        i++;
+    }
+    return 0;
 }
 
 void InitializeRooms(){
