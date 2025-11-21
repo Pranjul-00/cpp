@@ -77,6 +77,24 @@ int main(){
     return 0;
 }
 
+void InitializeRooms(){
+
+    if (roomCount > 0) {
+        return; 
+    }
+
+    for (int i = 0; i < 10; i++) {
+        Records[i].RoomNum = 101 + i;
+        Records[i].RentPerNight = 100.00;
+        Records[i].status = 0;
+        
+        strcpy(Records[i].guestName, "VACANT");
+        strcpy(Records[i].roomType, "AC"); 
+    }
+
+    roomCount = 10;
+}
+
 void checkIN(){
 
     if (roomCount >= 99){
