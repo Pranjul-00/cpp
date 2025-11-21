@@ -95,7 +95,7 @@ void createAccount(){
     cin >> Records[totalAccounts].Balance;
 
     cout << "------------------------------------------" << endl;
-    cout << "Account added successfully." << endl;
+    cout << "        Account added successfully." << endl;
     cout << "------------------------------------------" << endl;
 
     totalAccounts++;
@@ -117,7 +117,7 @@ void Deposit(){
 
     for (int i=0; i < totalAccounts; i++){
         if (Records[i].accNum == searchAcc){
-            
+
             cout << "------------------------------------------" << endl;
             cout << "Account Number : " << searchAcc << endl;
             cout << "Account Holder Name : " << Records[i].Name << endl;
