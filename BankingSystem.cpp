@@ -79,7 +79,8 @@ void createAccount(){
         return;
     }
 
-    cout << "--- Add New Student ---" << endl;
+    cout << "---------- Add New Account -------------" << endl;
+    cout << "------------------------------------------" << endl;
 
     cout << "Enter Account Number : ";
     cin >> Records[totalAccounts].accNum;
