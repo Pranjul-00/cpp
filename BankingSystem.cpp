@@ -10,12 +10,12 @@ struct Account{
     float Balance;
 };
 
-void createAccount;
-void Deposit;
-void Withdraw;
-void BalanceEnquiry;
-void saveDataToFile;
-void loadDataFromFile;
+void createAccount();
+void Deposit();
+void Withdraw();
+void BalanceEnquiry();
+void saveDataToFile();
+void loadDataFromFile();
 
 Account Records[100];
 int totalAccounts = 0;
@@ -27,6 +27,8 @@ int main(){
     int choice;
 
     do{
+
+        system("cls");
 
         cout << "------Welcome to the Banking System------" << endl;
         cout << "1.Create a New Account" << endl;
@@ -42,7 +44,7 @@ int main(){
             cin.clear();
             cin.ignore(10000,'\n');
             cout << "Invalid Choice. Kindly Retry.";
-            return;
+            continue;;
         }
 
         switch(choice){
@@ -73,7 +75,7 @@ int main(){
 void createAccount(){
 
     if (totalAccounts >= 99){
-        cout << "Database is full. Cannot addd more accounts" << endl;
+        cout << "Database is full. Cannot add more accounts" << endl;
         return;
     }
 
@@ -86,5 +88,29 @@ void createAccount(){
     cout << "Enter Account Holder name : ";
     cin.getline(Records[totalAccounts].Name,100);
 
-    cout << 
+    cout << "Enter Account type : ";
+    cin >> Records[totalAccounts].accType;
+
+    cout << "Enter opening balance : ";
+    cin >> Records[totalAccounts].Balance;
+
+    cout << "------------------------------------------" << endl;
+    cout << "Account added successfully." << endl;
+    cout << "------------------------------------------" << endl;
+
+    totalAccounts++;
+
+    system("pause");
+}
+
+void Deposit(){
+    if (totalAccounts == 0){
+        cout << "No Accounts in the database." << endl;
+        return;
+    }
+
+    long int searchAcc;
+
+    cout << "Enter Account Number : ";
+    cin >> searchAcc;
 }
