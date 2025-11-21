@@ -293,9 +293,9 @@ void saveDataToFile(){
 
         outFile << Records[i].RoomNum << endl;
         outFile << Records[i].guestName << endl;
-        outFile << Records[i].status << endl;
         outFile << Records[i].roomType << endl;
         outFile << Records[i].RentPerNight << endl;
+        outFile << Records[i].status << endl;
     }
 
     outFile.close();
