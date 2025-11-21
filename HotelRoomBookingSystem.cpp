@@ -96,7 +96,7 @@ int compareString(const char str1[], const char str2[]){
     int i = 0;
     while (str1[i] != '\0' || str2[i] != '\0') {
         if (str1[i] != str2[i]) {
-            return str1[i] - str[2];
+            return str1[i] - str2[i];
         }
         i++;
     }
@@ -216,5 +216,40 @@ void checkOUT(){
 
     if (roomFound == false) {
         cout << "Room no. " << roomCheck << " does not exist." << endl;
+    }
+}
+
+void SearchGuest(){
+
+    bool guestFound = false;
+    char guestCheck[100];
+
+    cout << "------------------------------" << endl;
+    cout << "Welcome to the Search system." << endl;
+    cout << "------------------------------" << endl;
+
+    cout << "Enter name of the guest : " << endl;
+    cin.ignore();
+    cin.getline(guestCheck,100);
+
+    for (int i=0; i < roomCount; i++) {
+        if (compareString(Records[i].guestName,guestCheck) == 0) {
+            cout << "------------------------------" << endl;
+            cout << " Details Found Successfully." << endl;
+            cout << "------------------------------" << endl; 
+            cout << "Guest Name : " << Records[i].guestName << endl;
+            cout << "Room Number : " << Records[i].RoomNum << endl;
+            cout << "Room Type : " << Records[i].roomType << endl;
+            cout << "Rent : " << Records[i].RentPerNight << endl;
+            cout << "------------------------------" << endl;
+
+            guestFound = true;
+            system("pause");
+            return;
+        }
+    }
+
+    if (guestFound == false) {
+        cout << "Cannot find the guest in the records." << endl;
     }
 }
