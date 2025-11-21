@@ -13,7 +13,7 @@ struct Account{
 void createAccount();
 void Deposit();
 void Withdraw();
-void BalanceEnquiry();
+void AccountEnquiry();
 void saveDataToFile();
 void loadDataFromFile();
 
@@ -34,7 +34,7 @@ int main(){
         cout << "1.Create a New Account" << endl;
         cout << "2.Deposit" << endl;
         cout << "3.Withdraw" << endl;
-        cout << "4.Balance Enquiry" << endl;
+        cout << "4.Account Enquiry" << endl;
         cout << "0.Exit" << endl;
         cout << "------------------------------------------" << endl;
         cout << "Enter your choice : ";
@@ -58,7 +58,7 @@ int main(){
                 Withdraw();
                 break;
             case 4:
-                BalanceEnquiry();
+                AccountEnquiry();
                 break;
             case 0:
                 saveDataToFile();
@@ -110,7 +110,23 @@ void Deposit(){
     }
 
     long int searchAcc;
+    int DepositedAmt;
 
     cout << "Enter Account Number : ";
     cin >> searchAcc;
+
+    for (int i=0; i < totalAccounts; i++){
+        if (Records[i].accNum == searchAcc){
+            
+            cout << "------------------------------------------" << endl;
+            cout << "Account Number : " << searchAcc << endl;
+            cout << "Account Holder Name : " << Records[i].Name << endl;
+            cout << "Current Balance : " << Records[i].Balance << endl;
+            cout << "------------------------------------------" << endl;
+            cout << "Enter amout to be deposited : ";
+            cin >> DepositedAmt;
+
+            Records[i].Balance = Records[i].Balance + DepositedAmt;
+        }
+    }
 }
