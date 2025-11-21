@@ -1,12 +1,13 @@
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
 struct Account{
     long int accNum;
     char Name[100];
-    char accType;
+    char accType[50];
     float Balance;
 };
 
@@ -270,11 +271,11 @@ void loadDataFromFile(){
     ifstream inFile("BankRecords.txt");
 
     if (!inFile){
-        cout << "Error loading file." << endl;
         return;
     }
 
     inFile >> totalAccounts;
+    inFile.ignore();
 
     for (int i=0; i < totalAccounts; i++){
         inFile >> Records[i].accNum;
@@ -282,7 +283,7 @@ void loadDataFromFile(){
         inFile.ignore();
         inFile.getline(Records[i].Name,100);
 
-        inFile >> Records[i].accType;
+        inFile.getline(Records[i].accType,50);
         inFile >> Records[i].Balance;
     }
 
