@@ -105,6 +105,7 @@ void createAccount(){
 }
 
 void Deposit(){
+
     if (totalAccounts == 0){
         cout << "No Accounts in the database." << endl;
         system("pause");
@@ -112,7 +113,7 @@ void Deposit(){
     }
 
     long int searchAcc;
-    int DepositedAmt;
+    float DepositedAmt;
 
     cout << "Enter Account Number : ";
     cin >> searchAcc;
@@ -129,11 +130,12 @@ void Deposit(){
             cout << "------------------------------------------" << endl;
             cout << "Enter amout to be deposited : ";
             cin >> DepositedAmt;
+            cout << DepositedAmt << " deposited successfully to A/C : " << searchAcc << endl;
 
             Records[i].Balance = Records[i].Balance + DepositedAmt;
 
             cout << "------------------------------------------" << endl;
-            cout << "     Updated the Account Balance." << endl;
+            cout << "Updated the Account Balance successfully." << endl;
             cout << "New Account Balance : " << Records[i].Balance;
             cout << "------------------------------------------" << endl;
 
@@ -142,7 +144,54 @@ void Deposit(){
         }
     }
 
-    if (!found) {
+    if (found == false) {
+        cout << "Error: Account Number " << searchAcc << " not found." << endl;
+    }
+
+    system("pause");
+}
+
+void Withdraw(){
+
+    if (totalAccounts == 0){
+            cout << "No Accounts in the database." << endl;
+            system("pause");
+            return;
+    }
+    
+    long int searchAcc;
+    float WithdrawnAmt;
+
+    cout << "Enter Account Number : ";
+    cin >> searchAcc;
+
+    bool found = false;
+
+    for (int i=0; i < totalAccounts; i++){
+        if (Records[i].accNum == searchAcc){
+
+            cout << "------------------------------------------" << endl;
+            cout << "Account Number : " << searchAcc << endl;
+            cout << "Account Holder Name : " << Records[i].Name << endl;
+            cout << "Current Balance : " << Records[i].Balance << endl;
+            cout << "------------------------------------------" << endl;
+            cout << "Enter Amount to be withdrawn : ";
+            cin >> WithdrawnAmt;
+            cout << WithdrawnAmt << " withdrawn successfully from A/C : " << searchAcc << endl;
+
+            Records[i].Balance = Records[i].Balance - WithdrawnAmt;
+
+            cout << "------------------------------------------" << endl;
+            cout << "Updated the Account Balance successfully." << endl;
+            cout << "New Account Balance : " << Records[i].Balance;
+            cout << "------------------------------------------" << endl;
+
+            found = true;
+            break;
+        }
+    }
+
+    if (found == false){
         cout << "Error: Account Number " << searchAcc << " not found." << endl;
     }
 
