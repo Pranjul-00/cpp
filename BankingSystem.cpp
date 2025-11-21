@@ -181,14 +181,18 @@ void Withdraw(){
             cout << "------------------------------------------" << endl;
             cout << "Enter Amount to be withdrawn : ";
             cin >> WithdrawnAmt;
-            cout << WithdrawnAmt << " withdrawn successfully from A/C : " << searchAcc << endl;
-
-            Records[i].Balance = Records[i].Balance - WithdrawnAmt;
-
-            cout << "------------------------------------------" << endl;
-            cout << "Updated the Account Balance successfully." << endl;
-            cout << "New Account Balance : " << Records[i].Balance;
-            cout << "------------------------------------------" << endl;
+            
+            if (Records[i].Balance - WithdrawnAmt < 500) {
+                cout << "------------------------------------------" << endl;
+                cout << "Transaction Failed! Insufficient Balance." << endl;
+                cout << "You must maintain a minimum of 500." << endl;
+                cout << "------------------------------------------" << endl;
+            } 
+            else {
+                Records[i].Balance = Records[i].Balance - WithdrawnAmt;
+                cout << "Withdrawn successfully." << endl;
+                cout << "New Account Balance : " << Records[i].Balance << endl;
+            }
 
             found = true;
             break;
