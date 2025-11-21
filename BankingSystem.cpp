@@ -234,3 +234,47 @@ void AccountEnquiry(){
 
     system("pause");
 }
+
+void saveDataToFile(){
+
+    ofstream outFile("BankRecords.txt");
+
+    if (!outFile){
+        cout << "Error saving file." << endl;
+        return;
+    }
+
+    outFile << totalAccounts << endl;
+
+    for (int i=0; i < totalAccounts; i++){
+        outFile << Records[i].accNum << endl;
+        outFile << Records[i].Name << endl;
+        outFile << Records[i].accType << endl;
+        outFile << Records[i].Balance << endl;
+    }
+
+    outFile.close();
+
+}
+
+void loadDataFromFile(){
+
+    ifstream inFile("BankRecords.txt");
+
+    if (!inFile){
+        cout << "Error loading file." << endl;
+        return;
+    }
+
+    inFile >> totalAccounts;
+
+    for (int i=0; i < totalAccounts; i++){
+        inFile >> Records[i].accNum;
+        inFile >> Records[i].Name;
+        inFile >> Records[i].accType;
+        inFile >> Records[i].Balance;
+    }
+
+    inFile.close();
+
+}
