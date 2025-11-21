@@ -157,7 +157,7 @@ void checkIN(){
         }
     }
 
-    if (roomCount == false) {
+    if (roomFound == false) {
         cout << "Error: Room Number " << desiredRoom << " does not exist." << endl;
         system("pause");
     }
@@ -189,12 +189,16 @@ void checkOUT(){
 
             cout << "Thank You for your stay with us " << Records[i].guestName << endl;
 
+            cout << "Your room rent is: $" << Records[i].RentPerNight << endl;
+
             Records[i].status = 0;
             copyString(Records[i].guestName, "VACANT");
 
-            cout << "Checkout complete." << endl;
+            cout << "Checkout complete. Room " << roomCheck << " is now vacant." << endl;
+
             roomFound = true;
-            break; 
+            system("pause");
+            return;
         }
     }
 
