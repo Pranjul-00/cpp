@@ -233,7 +233,10 @@ void SearchGuest(){
     cin.getline(guestCheck,100);
 
     for (int i=0; i < roomCount; i++) {
-        if (compareString(Records[i].guestName,guestCheck) == 0) {
+
+        if (Records[i].status == 1){
+
+            if (compareString(Records[i].guestName,guestCheck) == 0) {
             cout << "------------------------------" << endl;
             cout << " Details Found Successfully." << endl;
             cout << "------------------------------" << endl; 
@@ -246,10 +249,12 @@ void SearchGuest(){
             guestFound = true;
             system("pause");
             return;
+            }
         }
     }
 
     if (guestFound == false) {
         cout << "Cannot find the guest in the records." << endl;
+        system("pause");
     }
 }
