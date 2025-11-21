@@ -27,6 +27,10 @@ int main(){
 
     LoadDataFromFile();
 
+    if (roomCount == 0) {
+        InitializeRooms();
+    }
+
     int choice;
 
     do{
