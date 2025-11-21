@@ -162,3 +162,43 @@ void checkIN(){
         system("pause");
     }
 }
+
+void checkOUT(){
+
+    int roomCheck;
+
+    bool roomFound = false;
+
+    cout << "------------------------------" << endl;
+    cout << "Welcome to the check-out system." << endl;
+    cout << "------------------------------" << endl;
+    cout << "Enter Room Number : ";
+    cin >> roomCheck;
+
+    for (int i=0; i < roomCount; i++){
+
+        if (Records[i].RoomNum == roomCheck){
+
+            roomFound = true;
+
+            if (Records[i].status == 0){
+                cout << "Room is already vacant." << endl;
+                system("pause");
+                return;
+            }
+
+            cout << "Thank You for your stay with us " << Records[i].guestName << endl;
+
+            Records[i].status = 0;
+            copyString(Records[i].guestName, "VACANT");
+
+            cout << "Checkout complete." << endl;
+            roomFound = true;
+            break; 
+        }
+    }
+
+    if (roomFound == false) {
+        cout << "Room no. " << roomCheck << " does not exist." << endl;
+    }
+}
