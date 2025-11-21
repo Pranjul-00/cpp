@@ -9,7 +9,7 @@ struct Room{
     char guestName[100];
     char roomType[100];
     double RentPerNight;
-    int status;
+    int status;         //i am gonna use 0 for vacant.
 };
 
 int roomCount = 0;
@@ -100,13 +100,21 @@ void InitializeRooms(){
 }
 
 void checkIN(){
+    int desiredRoom;
 
-    if (roomCount >= 99){
-    cout << "All rooms are occupied. No rooms available." << endl;
-    return;
+    for (int i=0; i < roomCount; i++){
+        if (Records[i].status == 0){
+            cout << "------------------------------" << endl;
+            cout << "Here are the details of available rooms." << endl;
+            cout << "------------------------------" << endl;
+            cout << "Room Number : " << Records[i].RoomNum << endl; 
+            cout << "Room Type : " << Records[i].roomType<< endl; 
+            cout << "Room Rent : " << Records[i].RentPerNight << endl; 
+            cout << "------------------------------" << endl;
+            cout << "Enter Room Number of the room you\n'd like to book " << endl;
+            cin >> desiredRoom;
+
+            
+        }
     }
-
-    cout << "----Guest Check In------" << endl;
-    cout << "Enter Room Number : ";
-    cin
 }
